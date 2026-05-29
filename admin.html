@@ -264,8 +264,10 @@ input:checked + .slider::before { transform: translateX(20px); }
     <div class="topbar-title">Konteinerių valdymas</div>
     <div class="topbar-actions">
       <button class="btn btn-ghost" onclick="reloadData()" title="Iš naujo užkrauti iš serverio">↻ Atnaujinti</button>
+      <button class="btn btn-ghost" onclick="openGithubSettings()" title="GitHub nustatymai">⚙️ Nustatymai</button>
       <button class="btn btn-ghost" onclick="logout()">Atsijungti</button>
-      <button class="btn btn-primary" id="saveBtn" onclick="downloadJson()" disabled>💾 Atsisiųsti pakeitimus</button>
+      <button class="btn btn-ghost" onclick="downloadJson()" title="Atsisiųsti JSON failą atsarginei kopijai">📥 Atsisiųsti</button>
+      <button class="btn btn-primary" id="saveBtn" onclick="saveToGithub()" disabled>💾 Įrašyti į GitHub</button>
     </div>
   </div>
 
@@ -403,6 +405,67 @@ input:checked + .slider::before { transform: translateX(20px); }
       <div class="right">
         <button class="btn btn-ghost" onclick="closeModal()">Atšaukti</button>
         <button class="btn btn-primary" onclick="saveEdit()">Išsaugoti</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GitHub nustatymų modalas -->
+<div class="modal-overlay" id="githubModal">
+  <div class="modal" style="max-width: 560px;">
+    <div class="modal-header">
+      <h2>⚙️ GitHub nustatymai</h2>
+      <button class="modal-close" onclick="closeGithubModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin: 0 0 16px; color: var(--color-text-muted); font-size: 14px;">
+        Įveskite GitHub repozitorijos duomenis, kad pakeitimai keliautų tiesiai į svetainę be FTP įkėlimo.
+      </p>
+
+      <div class="form-group">
+        <label>GitHub savininkas (owner / username)</label>
+        <input type="text" id="ghOwner" placeholder="pvz. biomotorai">
+        <p class="form-hint">Iš URL: github.com/<b>OWNER</b>/repo</p>
+      </div>
+
+      <div class="form-group">
+        <label>Repozitorijos pavadinimas</label>
+        <input type="text" id="ghRepo" placeholder="pvz. biomotorai.github.io">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Branch'as</label>
+          <input type="text" id="ghBranch" placeholder="main" value="main">
+        </div>
+        <div class="form-group">
+          <label>Failo kelias repo'e</label>
+          <input type="text" id="ghPath" placeholder="konteineriai.json" value="konteineriai.json">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>GitHub Personal Access Token (PAT)</label>
+        <input type="password" id="ghToken" placeholder="ghp_... arba github_pat_...">
+        <p class="form-hint">
+          Susikurti: <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a><br>
+          • Repository access → tik šitas vienas repo<br>
+          • Permissions → <b>Contents: Read and write</b><br>
+          • Galiojimo laikas → bent 90 d. arba ilgesnis<br>
+          Tokenas saugomas tik šiame naršyklėje, niekam nesiunčiamas.
+        </p>
+      </div>
+
+      <div id="ghTestResult" style="font-size: 13px; min-height: 20px; margin-top: 8px;"></div>
+    </div>
+    <div class="modal-footer">
+      <div class="left">
+        <button class="btn btn-danger btn-sm" onclick="clearGithubSettings()" id="ghClearBtn" style="display:none;">Pamiršti nustatymus</button>
+      </div>
+      <div class="right">
+        <button class="btn btn-ghost" onclick="testGithubConnection()">🔌 Patikrinti ryšį</button>
+        <button class="btn btn-ghost" onclick="closeGithubModal()">Atšaukti</button>
+        <button class="btn btn-primary" onclick="saveGithubSettings()">Išsaugoti</button>
       </div>
     </div>
   </div>
@@ -714,7 +777,7 @@ function saveEdit() {
 }
 
 // ============================================================
-// ATSISIUNTIMAS
+// ATSARGINĖ KOPIJA (atsisiuntimas)
 // ============================================================
 function downloadJson() {
   containers.sort((a, b) => {
@@ -729,12 +792,192 @@ function downloadJson() {
   a.href = url; a.download = 'konteineriai.json';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  setTimeout(() => {
-    alert('Failas atsisiųstas!\n\nDabar:\n1. Įkelkite "konteineriai.json" į savo hosting\'ą per FTP arba file manager\'į (į tą patį aplanką, kur yra index.html)\n2. Perkraukite žemėlapio puslapį — pakeitimai turi būti matomi');
+}
+
+// ============================================================
+// GITHUB INTEGRACIJA
+// ============================================================
+const GH_STORAGE_KEY = 'biomotorai_gh_config';
+
+function getGithubConfig() {
+  try {
+    const raw = localStorage.getItem(GH_STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (e) { return null; }
+}
+
+function setGithubConfig(cfg) {
+  localStorage.setItem(GH_STORAGE_KEY, JSON.stringify(cfg));
+}
+
+function openGithubSettings() {
+  const cfg = getGithubConfig();
+  if (cfg) {
+    document.getElementById('ghOwner').value = cfg.owner || '';
+    document.getElementById('ghRepo').value = cfg.repo || '';
+    document.getElementById('ghBranch').value = cfg.branch || 'main';
+    document.getElementById('ghPath').value = cfg.path || 'konteineriai.json';
+    document.getElementById('ghToken').value = cfg.token || '';
+    document.getElementById('ghClearBtn').style.display = 'inline-flex';
+  } else {
+    document.getElementById('ghOwner').value = '';
+    document.getElementById('ghRepo').value = '';
+    document.getElementById('ghBranch').value = 'main';
+    document.getElementById('ghPath').value = 'konteineriai.json';
+    document.getElementById('ghToken').value = '';
+    document.getElementById('ghClearBtn').style.display = 'none';
+  }
+  document.getElementById('ghTestResult').textContent = '';
+  document.getElementById('githubModal').classList.add('active');
+}
+
+function closeGithubModal() {
+  document.getElementById('githubModal').classList.remove('active');
+}
+
+function saveGithubSettings() {
+  const cfg = {
+    owner: document.getElementById('ghOwner').value.trim(),
+    repo: document.getElementById('ghRepo').value.trim(),
+    branch: document.getElementById('ghBranch').value.trim() || 'main',
+    path: document.getElementById('ghPath').value.trim() || 'konteineriai.json',
+    token: document.getElementById('ghToken').value.trim()
+  };
+  if (!cfg.owner || !cfg.repo || !cfg.token) {
+    document.getElementById('ghTestResult').innerHTML = '<span style="color:var(--color-danger);">Užpildykite owner, repo ir token laukus.</span>';
+    return;
+  }
+  setGithubConfig(cfg);
+  document.getElementById('ghTestResult').innerHTML = '<span style="color:var(--color-success);">✓ Nustatymai išsaugoti.</span>';
+  setTimeout(closeGithubModal, 800);
+}
+
+function clearGithubSettings() {
+  if (!confirm('Pamiršti GitHub nustatymus (token, repo)? Reikės įvesti iš naujo.')) return;
+  localStorage.removeItem(GH_STORAGE_KEY);
+  closeGithubModal();
+  alert('Nustatymai pašalinti.');
+}
+
+async function testGithubConnection() {
+  const cfg = {
+    owner: document.getElementById('ghOwner').value.trim(),
+    repo: document.getElementById('ghRepo').value.trim(),
+    branch: document.getElementById('ghBranch').value.trim() || 'main',
+    path: document.getElementById('ghPath').value.trim() || 'konteineriai.json',
+    token: document.getElementById('ghToken').value.trim()
+  };
+  const resultEl = document.getElementById('ghTestResult');
+  if (!cfg.owner || !cfg.repo || !cfg.token) {
+    resultEl.innerHTML = '<span style="color:var(--color-danger);">Užpildykite owner, repo ir token.</span>';
+    return;
+  }
+  resultEl.innerHTML = '<span style="color:var(--color-text-muted);">Tikrinama…</span>';
+  try {
+    const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}?ref=${cfg.branch}`;
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${cfg.token}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      resultEl.innerHTML = `<span style="color:var(--color-success);">✓ Ryšys veikia. Failas rastas (${(data.size/1024).toFixed(1)} KB).</span>`;
+    } else if (response.status === 401) {
+      resultEl.innerHTML = '<span style="color:var(--color-danger);">✗ Neteisingas token (401).</span>';
+    } else if (response.status === 404) {
+      resultEl.innerHTML = '<span style="color:var(--color-danger);">✗ Nerasta. Patikrinkite owner, repo, branch, path (404).</span>';
+    } else {
+      resultEl.innerHTML = `<span style="color:var(--color-danger);">✗ Klaida: ${response.status}</span>`;
+    }
+  } catch (e) {
+    resultEl.innerHTML = `<span style="color:var(--color-danger);">✗ Tinklo klaida: ${e.message}</span>`;
+  }
+}
+
+// Pagrindinė įrašymo funkcija
+async function saveToGithub() {
+  const cfg = getGithubConfig();
+  if (!cfg || !cfg.token) {
+    if (confirm('GitHub nustatymai dar nesukonfigūruoti. Atidaryti nustatymus?')) {
+      openGithubSettings();
+    }
+    return;
+  }
+
+  // Surūšiuoti
+  containers.sort((a, b) => {
+    if (a.country !== b.country) return a.country.localeCompare(b.country);
+    if (a.city !== b.city) return a.city.localeCompare(b.city);
+    return a.address.localeCompare(b.address);
+  });
+
+  const saveBtn = document.getElementById('saveBtn');
+  const originalText = saveBtn.innerHTML;
+  saveBtn.disabled = true;
+  saveBtn.innerHTML = '⏳ Įrašoma…';
+
+  try {
+    // 1. Gauti dabartinę failo SHA reikšmę (būtina API'jai)
+    const getUrl = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}?ref=${cfg.branch}`;
+    const getResp = await fetch(getUrl, {
+      headers: {
+        'Authorization': `Bearer ${cfg.token}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
+    });
+    if (!getResp.ok) {
+      throw new Error(`Nepavyko gauti failo informacijos (${getResp.status}). Patikrinkite nustatymus.`);
+    }
+    const fileInfo = await getResp.json();
+    const sha = fileInfo.sha;
+
+    // 2. Užkoduoti naują turinį Base64'u
+    const jsonStr = JSON.stringify(containers, null, 2);
+    // UTF-8 -> Base64 (saugu lietuviškoms raidėms)
+    const base64Content = btoa(unescape(encodeURIComponent(jsonStr)));
+
+    // 3. Įrašyti per PUT
+    const activeCount = containers.filter(c => c.active !== false).length;
+    const message = `Update konteineriai.json (${containers.length} total, ${activeCount} active) via admin`;
+
+    const putResp = await fetch(getUrl.split('?')[0], {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${cfg.token}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: message,
+        content: base64Content,
+        sha: sha,
+        branch: cfg.branch
+      })
+    });
+
+    if (!putResp.ok) {
+      const errBody = await putResp.json().catch(() => ({}));
+      throw new Error(`Įrašymas nepavyko (${putResp.status}): ${errBody.message || 'nežinoma klaida'}`);
+    }
+
+    // Sėkmė
     initialSnapshot = JSON.stringify(containers);
     unsavedChanges.clear();
     renderTable(); updateStats(); updateSaveBtn();
-  }, 200);
+
+    alert('✓ Pakeitimai įrašyti į GitHub!\n\nGitHub Pages atnaujins svetainę per 30–60 sekundžių. Tada perkraukite žemėlapį (Ctrl+F5), kad pamatytumėte pakeitimus.');
+  } catch (e) {
+    alert('Klaida įrašant į GitHub:\n\n' + e.message + '\n\nGalite atsisiųsti failą ranka (mygtukas „📥 Atsisiųsti") kaip atsarginį variantą.');
+  } finally {
+    saveBtn.innerHTML = originalText;
+    updateSaveBtn();
+  }
 }
 
 // ============================================================
