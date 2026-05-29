@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin · Konteinerių valdymas | Biomotorai</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous">
+<style>
+:root {
+  --color-primary: #F4B400;
+  --color-primary-dark: #D89B00;
+  --color-text: #2C2C2A;
+  --color-text-muted: #6B6B68;
+  --color-bg: #ffffff;
+  --color-bg-alt: #FAFAF7;
+  --color-border: #E8E8E2;
+  --color-success: #2E7D32;
+  --color-success-light: #E8F5E9;
+  --color-danger: #C62828;
+  --color-danger-light: #FFEBEE;
+  --color-warn: #F57C00;
+  --color-warn-light: #FFF3E0;
+  --color-info: #185FA5;
+  --color-info-light: #E3F0FC;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg-alt);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Prisijungimo ekranas */
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.login-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: var(--shadow-sm);
+}
+.login-card h1 { margin: 0 0 8px; font-size: 22px; }
+.login-card p { margin: 0 0 20px; color: var(--color-text-muted); font-size: 14px; }
+.login-card input {
+  width: 100%; padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px; font-size: 15px;
+  font-family: inherit; margin-bottom: 12px;
+}
+.login-card input:focus { outline: none; border-color: var(--color-primary); }
+.login-card button {
+  width: 100%; padding: 12px;
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary-dark);
+  border-radius: 8px; font-size: 15px;
+  font-weight: 600; cursor: pointer; font-family: inherit;
+}
+.login-error { color: var(--color-danger); font-size: 13px; margin-top: 8px; min-height: 18px; }
+
+/* Pagrindinis admin'as */
+.admin-app { display: none; }
+.admin-app.active { display: block; }
+
+.topbar {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  flex-wrap: wrap; gap: 12px;
+}
+.topbar-title { font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+.topbar-title::before {
+  content: ""; width: 24px; height: 24px;
+  background: var(--color-primary); border-radius: 4px; display: inline-block;
+}
+.topbar-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.btn {
+  padding: 10px 16px; border-radius: 8px; font-size: 14px;
+  font-weight: 600; cursor: pointer; border: 1px solid transparent;
+  font-family: inherit; display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-primary { background: var(--color-primary); border-color: var(--color-primary-dark); color: var(--color-text); }
+.btn-primary:hover { background: var(--color-primary-dark); }
+.btn-ghost { background: var(--color-bg); border-color: var(--color-border); color: var(--color-text); }
+.btn-ghost:hover { background: var(--color-bg-alt); }
+.btn-success { background: var(--color-success); border-color: var(--color-success); color: #fff; }
+.btn-success:hover { opacity: 0.9; }
+.btn-danger { background: var(--color-bg); border-color: var(--color-danger); color: var(--color-danger); }
+.btn-danger:hover { background: var(--color-danger-light); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-sm { padding: 6px 10px; font-size: 13px; }
+
+/* Tabs */
+.tabs {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 24px;
+  display: flex; gap: 4px;
+}
+.tab {
+  padding: 14px 18px; cursor: pointer; font-size: 14px; font-weight: 600;
+  color: var(--color-text-muted); border-bottom: 2px solid transparent;
+  background: none; border-top: none; border-left: none; border-right: none;
+  font-family: inherit;
+}
+.tab.active { color: var(--color-text); border-bottom-color: var(--color-primary); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.summary {
+  padding: 20px 24px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px; max-width: 1400px; margin: 0 auto;
+}
+.stat-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 10px; padding: 16px; }
+.stat-label { font-size: 12px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.stat-value { font-size: 24px; font-weight: 700; }
+.stat-card.active .stat-value { color: var(--color-success); }
+.stat-card.inactive .stat-value { color: var(--color-danger); }
+.stat-card.unsaved .stat-value { color: var(--color-warn); }
+
+.controls {
+  max-width: 1400px; margin: 0 auto; padding: 0 24px 16px;
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+}
+.controls input, .controls select {
+  padding: 9px 12px; border: 1px solid var(--color-border);
+  border-radius: 8px; font-size: 14px; font-family: inherit; background: var(--color-bg);
+}
+.controls input { flex: 1; min-width: 200px; max-width: 400px; }
+.controls input:focus, .controls select:focus { outline: none; border-color: var(--color-primary); }
+.controls .spacer { flex: 1; }
+
+.bulk-bar {
+  background: var(--color-warn-light);
+  border-top: 1px solid var(--color-warn); border-bottom: 1px solid var(--color-warn);
+  padding: 10px 24px; display: none; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+}
+.bulk-bar.active { display: flex; }
+.bulk-bar-text { font-size: 14px; font-weight: 600; }
+.bulk-bar-actions { display: flex; gap: 8px; }
+
+.table-wrap { max-width: 1400px; margin: 0 auto; padding: 0 24px 24px; }
+.table {
+  width: 100%; border-collapse: collapse; background: var(--color-bg);
+  border: 1px solid var(--color-border); border-radius: 10px;
+  overflow: hidden; font-size: 14px;
+}
+.table th, .table td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--color-border); }
+.table th {
+  background: var(--color-bg-alt); font-weight: 600; font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted);
+}
+.table tbody tr:hover { background: var(--color-bg-alt); }
+.table tbody tr.unsaved { background: #FFFBF0; }
+.table tbody tr:last-child td { border-bottom: none; }
+.col-checkbox { width: 40px; text-align: center; }
+.col-status { width: 110px; }
+.col-id { width: 64px; color: var(--color-text-muted); font-family: ui-monospace, monospace; font-size: 12px; }
+.col-country { width: 90px; color: var(--color-text-muted); }
+.col-city { width: 150px; }
+.col-actions { width: 150px; text-align: right; white-space: nowrap; }
+
+.status-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+.status-pill.active { background: var(--color-success-light); color: var(--color-success); }
+.status-pill.inactive { background: var(--color-danger-light); color: var(--color-danger); }
+.status-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+.icon-btn {
+  background: none; border: 1px solid var(--color-border); border-radius: 6px;
+  padding: 6px 8px; cursor: pointer; font-size: 13px; margin-left: 4px;
+}
+.icon-btn:hover { background: var(--color-bg-alt); }
+.icon-btn.danger:hover { background: var(--color-danger-light); border-color: var(--color-danger); }
+
+/* Switch */
+.switch { position: relative; display: inline-block; width: 44px; height: 24px; vertical-align: middle; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #d4d4d0; border-radius: 24px; transition: 0.2s; }
+.slider::before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s; }
+input:checked + .slider { background: var(--color-success); }
+input:checked + .slider::before { transform: translateX(20px); }
+
+.empty { padding: 60px 20px; text-align: center; color: var(--color-text-muted); }
+
+/* Modal */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  z-index: 1000; align-items: flex-start; justify-content: center; padding: 24px; overflow-y: auto;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: var(--color-bg); border-radius: 12px; max-width: 920px; width: 100%;
+  box-shadow: var(--shadow-md); margin: auto;
+}
+.modal-header { padding: 20px 24px; border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; }
+.modal-header h2 { margin: 0; font-size: 18px; }
+.modal-close { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--color-text-muted); line-height: 1; }
+.modal-body { padding: 24px; }
+.modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 720px) { .modal-grid { grid-template-columns: 1fr; } }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.form-group input, .form-group select {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--color-border);
+  border-radius: 8px; font-size: 14px; font-family: inherit;
+}
+.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--color-primary); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-hint { font-size: 12px; color: var(--color-text-muted); margin-top: 4px; }
+#editMap { height: 340px; border-radius: 8px; border: 1px solid var(--color-border); margin-bottom: 8px; }
+.coord-display { font-family: ui-monospace, monospace; font-size: 12px; color: var(--color-info); background: var(--color-info-light); padding: 8px 10px; border-radius: 6px; }
+.modal-footer { padding: 16px 24px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; gap: 8px; }
+.modal-footer .right { display: flex; gap: 8px; }
+
+/* Analytics */
+.analytics-wrap { max-width: 1400px; margin: 0 auto; padding: 24px; }
+.analytics-notice {
+  background: var(--color-info-light); border: 1px solid var(--color-info);
+  border-radius: 10px; padding: 20px; color: var(--color-text); font-size: 14px; line-height: 1.6;
+}
+.analytics-notice h3 { margin: 0 0 8px; font-size: 16px; }
+.analytics-notice code { background: rgba(0,0,0,0.06); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+
+@media (max-width: 768px) {
+  .topbar { padding: 12px 16px; }
+  .summary, .controls, .table-wrap { padding-left: 12px; padding-right: 12px; }
+  .tabs { padding: 0 12px; }
+  .col-id, .col-country { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Prisijungimo ekranas -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <h1>Konteinerių valdymas</h1>
+    <p>Įveskite administratoriaus slaptažodį.</p>
+    <input type="password" id="passInput" placeholder="Slaptažodis" autocomplete="current-password">
+    <button onclick="login()">Prisijungti</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<!-- Admin programa -->
+<div class="admin-app" id="adminApp">
+  <div class="topbar">
+    <div class="topbar-title">Konteinerių valdymas</div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" onclick="reloadData()" title="Iš naujo užkrauti iš serverio">↻ Atnaujinti</button>
+      <button class="btn btn-ghost" onclick="logout()">Atsijungti</button>
+      <button class="btn btn-primary" id="saveBtn" onclick="downloadJson()" disabled>💾 Atsisiųsti pakeitimus</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="manage" onclick="switchTab('manage')">Konteineriai</button>
+    <button class="tab" data-tab="analytics" onclick="switchTab('analytics')">Analitika</button>
+  </div>
+
+  <!-- VALDYMO PANELĖ -->
+  <div class="tab-panel active" id="panel-manage">
+    <div class="summary">
+      <div class="stat-card"><div class="stat-label">Iš viso</div><div class="stat-value" id="statTotal">—</div></div>
+      <div class="stat-card active"><div class="stat-label">Aktyvūs</div><div class="stat-value" id="statActive">—</div></div>
+      <div class="stat-card inactive"><div class="stat-label">Neaktyvūs</div><div class="stat-value" id="statInactive">—</div></div>
+      <div class="stat-card unsaved"><div class="stat-label">Neišsaugoti pakeitimai</div><div class="stat-value" id="statUnsaved">0</div></div>
+    </div>
+
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="🔍 Ieškoti pagal adresą ar miestą…" oninput="renderTable()">
+      <select id="countryFilter" onchange="onCountryFilterChange()">
+        <option value="">Visos šalys</option>
+        <option value="Lietuva">Lietuva</option>
+        <option value="Latvija">Latvija</option>
+        <option value="Estija">Estija</option>
+      </select>
+      <select id="cityFilter" onchange="renderTable()"><option value="">Visi miestai</option></select>
+      <select id="statusFilter" onchange="renderTable()">
+        <option value="">Visi</option>
+        <option value="active">Tik aktyvūs</option>
+        <option value="inactive">Tik neaktyvūs</option>
+      </select>
+      <div class="spacer"></div>
+      <button class="btn btn-success" onclick="openAddModal()">+ Naujas konteineris</button>
+    </div>
+
+    <div class="bulk-bar" id="bulkBar">
+      <div class="bulk-bar-text"><span id="bulkCount">0</span> pažymėti</div>
+      <div class="bulk-bar-actions">
+        <button class="btn btn-ghost btn-sm" onclick="bulkSet(true)">✓ Aktyvuoti</button>
+        <button class="btn btn-ghost btn-sm" onclick="bulkSet(false)">✕ Deaktyvuoti</button>
+        <button class="btn btn-ghost btn-sm" onclick="bulkDelete()">🗑 Ištrinti</button>
+        <button class="btn btn-ghost btn-sm" onclick="clearSelection()">Išvalyti</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="table" id="containerTable">
+        <thead>
+          <tr>
+            <th class="col-checkbox"><input type="checkbox" id="selectAll" onchange="toggleSelectAll()"></th>
+            <th class="col-id">ID</th>
+            <th>Adresas</th>
+            <th class="col-city">Miestas</th>
+            <th class="col-country">Šalis</th>
+            <th class="col-status">Būsena</th>
+            <th class="col-actions">Veiksmai</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="empty" id="emptyState" style="display:none;">Nerasta konteinerių pagal jūsų filtrus.</div>
+    </div>
+  </div>
+
+  <!-- ANALITIKOS PANELĖ -->
+  <div class="tab-panel" id="panel-analytics">
+    <div class="analytics-wrap">
+      <div class="analytics-notice">
+        <h3>📊 Analitika dar neįjungta</h3>
+        <p>Kad matytumėte, kurių konteinerių navigacijos nuorodų žmonės prašo daugiausiai, reikia įjungti įvykių sekimą. Tam yra du būdai:</p>
+        <p><strong>1. Google Analytics (nemokama)</strong> — žemėlapio kode jau paruoštas sekimo kodas. Kai turėsite Google Analytics ID (formatu <code>G-XXXXXXXXXX</code>), įdėkite jį į <code>index.html</code> failą, ir spustelėjimai bus matomi Google Analytics skydelyje (skiltyje „Events" → ieškokite įvykio <code>navigate_to_container</code>).</p>
+        <p><strong>2. Tikras dashboard'as čia (reikia Supabase paskyros)</strong> — jeigu norėsite matyti statistiką tiesiai šioje panelėje su grafikais ir reitingais, galima prijungti nemokamą duomenų bazę. Parašykite, ir paruošime.</p>
+        <p style="margin-bottom:0;">Iki tol ši skiltis lieka kaip vietos rezervavimas.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REDAGAVIMO / PRIDĖJIMO MODALAS -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Redaguoti konteinerį</h2>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-grid">
+        <div>
+          <div class="form-group">
+            <label>Adresas / pavadinimas</label>
+            <input type="text" id="fAddress" placeholder="pvz. Karmelitų g. 5, Vilnius">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Miestas</label>
+              <input type="text" id="fCity" placeholder="pvz. Vilnius">
+            </div>
+            <div class="form-group">
+              <label>Šalis</label>
+              <select id="fCountry">
+                <option value="Lietuva">Lietuva</option>
+                <option value="Latvija">Latvija</option>
+                <option value="Estija">Estija</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Platuma (lat)</label>
+              <input type="number" id="fLat" step="0.000001" placeholder="54.6758" oninput="syncMapFromInputs()">
+            </div>
+            <div class="form-group">
+              <label>Ilguma (lng)</label>
+              <input type="number" id="fLng" step="0.000001" placeholder="25.2850" oninput="syncMapFromInputs()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Būsena</label>
+            <select id="fActive">
+              <option value="true">Aktyvus</option>
+              <option value="false">Neaktyvus</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label style="display:block; font-size:13px; font-weight:600; margin-bottom:6px;">Vieta žemėlapyje (spustelėkite, kad nustatytumėte tašką)</label>
+          <div id="editMap"></div>
+          <div class="coord-display" id="coordDisplay">Koordinatės nenustatytos</div>
+          <p class="form-hint">Galite spustelėti žemėlapyje, vilkti žymeklį, arba įvesti koordinates rankiniu būdu kairėje. Tikslią koordinatę galite rasti per <a href="https://www.google.com/maps" target="_blank" rel="noopener">Google Maps</a> (dešinysis pelės klavišas ant taško → koordinatės).</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="left"></div>
+      <div class="right">
+        <button class="btn btn-ghost" onclick="closeModal()">Atšaukti</button>
+        <button class="btn btn-primary" onclick="saveEdit()">Išsaugoti</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin="anonymous"></script>
+<script>
+// ============================================================
+// KONFIGŪRACIJA
+// ============================================================
+// SVARBU: pakeiskite šį slaptažodį prieš naudojimą!
+// Numatytasis hash atitinka "biomotorai2026"
+// Naują hash sugeneruoti: atidarykite naršyklės konsolę (F12) ir įvykdykite:
+//   crypto.subtle.digest("SHA-256", new TextEncoder().encode("jūsų_slaptažodis")).then(h => console.log(Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2,"0")).join("")))
+const PASSWORD_HASH = "33a55dcfb7a447e621b3b5b69d239a63d5767e81598d0b938f4dbf53caf1b4dd";
+const DATA_URL = 'konteineriai.json';
+
+// ============================================================
+// BŪSENA
+// ============================================================
+let containers = [];
+let unsavedChanges = new Set();
+let selection = new Set();
+let initialSnapshot = "";  // JSON pradinės būsenos, kad žinotume ar yra pakeitimų
+let editingId = null;      // null = pridedamas naujas
+let editMap = null, editMarker = null;
+
+// ============================================================
+// AUTENTIFIKACIJA
+// ============================================================
+async function sha256(text) {
+  const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+async function login() {
+  const pass = document.getElementById('passInput').value;
+  const errorEl = document.getElementById('loginError');
+  if (!pass) { errorEl.textContent = 'Įveskite slaptažodį'; return; }
+  const hash = await sha256(pass);
+  if (hash !== PASSWORD_HASH) {
+    errorEl.textContent = 'Neteisingas slaptažodis';
+    document.getElementById('passInput').value = '';
+    return;
+  }
+  sessionStorage.setItem('biomotorai_admin_auth', '1');
+  showAdmin();
+}
+function logout() {
+  if (hasUnsaved() && !confirm('Turite neišsaugotų pakeitimų. Tikrai norite atsijungti?')) return;
+  sessionStorage.removeItem('biomotorai_admin_auth');
+  document.getElementById('adminApp').classList.remove('active');
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('passInput').value = '';
+  document.getElementById('loginError').textContent = '';
+}
+function showAdmin() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminApp').classList.add('active');
+  loadData();
+}
+document.getElementById('passInput').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+if (sessionStorage.getItem('biomotorai_admin_auth') === '1') showAdmin();
+
+// ============================================================
+// TABS
+// ============================================================
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + name));
+}
+
+// ============================================================
+// DUOMENŲ UŽKROVIMAS
+// ============================================================
+async function loadData() {
+  try {
+    const response = await fetch(DATA_URL + '?v=' + Date.now());
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    containers = await response.json();
+    initialSnapshot = JSON.stringify(containers);
+    unsavedChanges.clear();
+    selection.clear();
+    populateCityFilter();
+    renderTable();
+    updateStats();
+    updateSaveBtn();
+  } catch (err) {
+    alert('Nepavyko užkrauti duomenų: ' + err.message + '\n\nPatikrinkite, ar konteineriai.json yra tame pačiame aplanke.');
+  }
+}
+function reloadData() {
+  if (hasUnsaved() && !confirm('Turite neišsaugotų pakeitimų. Atnaujinant jie bus prarasti. Tęsti?')) return;
+  loadData();
+}
+function hasUnsaved() { return JSON.stringify(containers) !== initialSnapshot; }
+
+// ============================================================
+// LENTELĖ
+// ============================================================
+function populateCityFilter() {
+  const selectedCountry = document.getElementById('countryFilter').value;
+  const pool = selectedCountry ? containers.filter(c => c.country === selectedCountry) : containers;
+  const cities = [...new Set(pool.map(c => c.city))].sort();
+  const sel = document.getElementById('cityFilter');
+  const prev = sel.value;
+  sel.innerHTML = '<option value="">Visi miestai</option>' +
+    cities.map(c => `<option value="${escapeHTML(c)}">${escapeHTML(c)}</option>`).join('');
+  if (cities.includes(prev)) sel.value = prev;
+}
+function onCountryFilterChange() { populateCityFilter(); renderTable(); }
+
+function getFilteredContainers() {
+  const search = document.getElementById('searchInput').value.toLowerCase().trim();
+  const country = document.getElementById('countryFilter').value;
+  const city = document.getElementById('cityFilter').value;
+  const status = document.getElementById('statusFilter').value;
+  return containers.filter(c => {
+    if (country && c.country !== country) return false;
+    if (city && c.city !== city) return false;
+    if (status === 'active' && c.active === false) return false;
+    if (status === 'inactive' && c.active !== false) return false;
+    if (search) {
+      const hay = (c.address + ' ' + c.city).toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+}
+function renderTable() {
+  const filtered = getFilteredContainers();
+  const tbody = document.getElementById('tbody');
+  const empty = document.getElementById('emptyState');
+  if (filtered.length === 0) { tbody.innerHTML = ''; empty.style.display = 'block'; updateBulkBar(); return; }
+  empty.style.display = 'none';
+  tbody.innerHTML = filtered.map(c => {
+    const isActive = c.active !== false;
+    const isUnsaved = unsavedChanges.has(c.id);
+    const isSelected = selection.has(c.id);
+    return `
+      <tr class="${isUnsaved ? 'unsaved' : ''}" data-id="${c.id}">
+        <td class="col-checkbox"><input type="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleSelect(${c.id})"></td>
+        <td class="col-id">${c.id}</td>
+        <td><strong>${escapeHTML(c.address)}</strong>${isUnsaved ? ' <span style="color:#F57C00;font-size:11px;">•pakeista</span>' : ''}</td>
+        <td class="col-city">${escapeHTML(c.city)}</td>
+        <td class="col-country">${escapeHTML(c.country)}</td>
+        <td class="col-status"><span class="status-pill ${isActive ? 'active' : 'inactive'}">${isActive ? 'Aktyvus' : 'Neaktyvus'}</span></td>
+        <td class="col-actions">
+          <label class="switch" title="Greitas aktyvavimas/deaktyvavimas">
+            <input type="checkbox" ${isActive ? 'checked' : ''} onchange="toggleContainer(${c.id})">
+            <span class="slider"></span>
+          </label>
+          <button class="icon-btn" onclick="openEditModal(${c.id})" title="Redaguoti">✏️</button>
+          <button class="icon-btn danger" onclick="deleteContainer(${c.id})" title="Ištrinti">🗑️</button>
+        </td>
+      </tr>`;
+  }).join('');
+  updateBulkBar();
+}
+function markChanged(id) {
+  unsavedChanges.add(id);
+  updateStats(); updateSaveBtn();
+}
+function toggleContainer(id) {
+  const c = containers.find(x => x.id === id);
+  if (!c) return;
+  c.active = c.active === false ? true : false;
+  markChanged(id);
+  renderTable();
+}
+function toggleSelect(id) { selection.has(id) ? selection.delete(id) : selection.add(id); updateBulkBar(); }
+function toggleSelectAll() {
+  const checked = document.getElementById('selectAll').checked;
+  const filtered = getFilteredContainers();
+  filtered.forEach(c => checked ? selection.add(c.id) : selection.delete(c.id));
+  renderTable();
+}
+function clearSelection() { selection.clear(); document.getElementById('selectAll').checked = false; renderTable(); }
+function bulkSet(active) {
+  if (selection.size === 0) return;
+  selection.forEach(id => { const c = containers.find(x => x.id === id); if (c) { c.active = active; unsavedChanges.add(id); } });
+  selection.clear(); document.getElementById('selectAll').checked = false;
+  renderTable(); updateStats(); updateSaveBtn();
+}
+function bulkDelete() {
+  if (selection.size === 0) return;
+  if (!confirm(`Tikrai ištrinti ${selection.size} konteinerį(-ius)? Šis veiksmas matysis tik po failo atsisiuntimo ir įkėlimo.`)) return;
+  containers = containers.filter(c => !selection.has(c.id));
+  selection.clear(); document.getElementById('selectAll').checked = false;
+  populateCityFilter(); renderTable(); updateStats(); updateSaveBtn();
+}
+function deleteContainer(id) {
+  const c = containers.find(x => x.id === id);
+  if (!c) return;
+  if (!confirm(`Tikrai ištrinti konteinerį?\n\n${c.address}, ${c.city}`)) return;
+  containers = containers.filter(x => x.id !== id);
+  selection.delete(id);
+  populateCityFilter(); renderTable(); updateStats(); updateSaveBtn();
+}
+function updateBulkBar() {
+  const bar = document.getElementById('bulkBar');
+  if (selection.size > 0) { bar.classList.add('active'); document.getElementById('bulkCount').textContent = selection.size; }
+  else bar.classList.remove('active');
+}
+function updateStats() {
+  const total = containers.length;
+  const active = containers.filter(c => c.active !== false).length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statActive').textContent = active;
+  document.getElementById('statInactive').textContent = total - active;
+  document.getElementById('statUnsaved').textContent = hasUnsaved() ? '●' : '0';
+}
+function updateSaveBtn() { document.getElementById('saveBtn').disabled = !hasUnsaved(); }
+
+// ============================================================
+// PRIDĖTI / REDAGUOTI (MODALAS SU ŽEMĖLAPIU)
+// ============================================================
+function openAddModal() {
+  editingId = null;
+  document.getElementById('modalTitle').textContent = 'Naujas konteineris';
+  document.getElementById('fAddress').value = '';
+  document.getElementById('fCity').value = '';
+  document.getElementById('fCountry').value = 'Lietuva';
+  document.getElementById('fLat').value = '';
+  document.getElementById('fLng').value = '';
+  document.getElementById('fActive').value = 'true';
+  openModalMap(54.6872, 25.2797, false); // Vilnius centras, be žymeklio
+  document.getElementById('coordDisplay').textContent = 'Koordinatės nenustatytos';
+  document.getElementById('editModal').classList.add('active');
+}
+function openEditModal(id) {
+  const c = containers.find(x => x.id === id);
+  if (!c) return;
+  editingId = id;
+  document.getElementById('modalTitle').textContent = 'Redaguoti konteinerį';
+  document.getElementById('fAddress').value = c.address;
+  document.getElementById('fCity').value = c.city;
+  document.getElementById('fCountry').value = c.country;
+  document.getElementById('fLat').value = c.lat;
+  document.getElementById('fLng').value = c.lng;
+  document.getElementById('fActive').value = String(c.active !== false);
+  openModalMap(c.lat, c.lng, true);
+  updateCoordDisplay(c.lat, c.lng);
+  document.getElementById('editModal').classList.add('active');
+}
+function openModalMap(lat, lng, withMarker) {
+  document.getElementById('editModal').classList.add('active');
+  setTimeout(() => {
+    if (!editMap) {
+      editMap = L.map('editMap').setView([lat, lng], 14);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '© OpenStreetMap © CARTO', subdomains: 'abcd', maxZoom: 19
+      }).addTo(editMap);
+      editMap.on('click', e => setMarker(e.latlng.lat, e.latlng.lng));
+    } else {
+      editMap.setView([lat, lng], 14);
+      editMap.invalidateSize();
+    }
+    if (editMarker) { editMap.removeLayer(editMarker); editMarker = null; }
+    if (withMarker) setMarker(lat, lng);
+  }, 100);
+}
+function setMarker(lat, lng) {
+  if (editMarker) editMap.removeLayer(editMarker);
+  editMarker = L.marker([lat, lng], { draggable: true }).addTo(editMap);
+  editMarker.on('dragend', () => {
+    const p = editMarker.getLatLng();
+    document.getElementById('fLat').value = p.lat.toFixed(6);
+    document.getElementById('fLng').value = p.lng.toFixed(6);
+    updateCoordDisplay(p.lat, p.lng);
+  });
+  document.getElementById('fLat').value = Number(lat).toFixed(6);
+  document.getElementById('fLng').value = Number(lng).toFixed(6);
+  updateCoordDisplay(lat, lng);
+}
+function syncMapFromInputs() {
+  const lat = parseFloat(document.getElementById('fLat').value);
+  const lng = parseFloat(document.getElementById('fLng').value);
+  if (!isNaN(lat) && !isNaN(lng) && editMap) {
+    setMarker(lat, lng);
+    editMap.setView([lat, lng]);
+  }
+}
+function updateCoordDisplay(lat, lng) {
+  document.getElementById('coordDisplay').textContent = `lat: ${Number(lat).toFixed(6)}, lng: ${Number(lng).toFixed(6)}`;
+}
+function closeModal() { document.getElementById('editModal').classList.remove('active'); }
+function saveEdit() {
+  const address = document.getElementById('fAddress').value.trim();
+  const city = document.getElementById('fCity').value.trim();
+  const country = document.getElementById('fCountry').value;
+  const lat = parseFloat(document.getElementById('fLat').value);
+  const lng = parseFloat(document.getElementById('fLng').value);
+  const active = document.getElementById('fActive').value === 'true';
+
+  if (!address) { alert('Įveskite adresą'); return; }
+  if (!city) { alert('Įveskite miestą'); return; }
+  if (isNaN(lat) || isNaN(lng)) { alert('Nustatykite koordinates (spustelėkite žemėlapyje arba įveskite rankiniu būdu)'); return; }
+
+  if (editingId === null) {
+    const newId = containers.reduce((mx, c) => Math.max(mx, c.id), 0) + 1;
+    containers.push({ id: newId, lat, lng, address, city, country, active });
+    unsavedChanges.add(newId);
+  } else {
+    const c = containers.find(x => x.id === editingId);
+    if (c) { c.address = address; c.city = city; c.country = country; c.lat = lat; c.lng = lng; c.active = active; unsavedChanges.add(editingId); }
+  }
+  closeModal();
+  populateCityFilter(); renderTable(); updateStats(); updateSaveBtn();
+}
+
+// ============================================================
+// ATSISIUNTIMAS
+// ============================================================
+function downloadJson() {
+  containers.sort((a, b) => {
+    if (a.country !== b.country) return a.country.localeCompare(b.country);
+    if (a.city !== b.city) return a.city.localeCompare(b.city);
+    return a.address.localeCompare(b.address);
+  });
+  const json = JSON.stringify(containers, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'konteineriai.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  setTimeout(() => {
+    alert('Failas atsisiųstas!\n\nDabar:\n1. Įkelkite "konteineriai.json" į savo hosting\'ą per FTP arba file manager\'į (į tą patį aplanką, kur yra index.html)\n2. Perkraukite žemėlapio puslapį — pakeitimai turi būti matomi');
+    initialSnapshot = JSON.stringify(containers);
+    unsavedChanges.clear();
+    renderTable(); updateStats(); updateSaveBtn();
+  }, 200);
+}
+
+// ============================================================
+// PAGALBINĖS
+// ============================================================
+function escapeHTML(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
+window.addEventListener('beforeunload', e => { if (hasUnsaved()) { e.preventDefault(); e.returnValue = ''; } });
+</script>
+</body>
+</html>
