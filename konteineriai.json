@@ -117,19 +117,19 @@
     "active": true
   },
   {
-    "id": 2075,
-    "lat": 55.525374,
-    "lng": 25.092554,
-    "address": "Šviesos g. 3, Anykščiai",
+    "id": 2076,
+    "lat": 55.521017,
+    "lng": 25.099856,
+    "address": "V. Kudirkos g. 4, Anykščiai",
     "city": "Anykščiai",
     "country": "Lietuva",
     "active": true
   },
   {
-    "id": 2076,
-    "lat": 55.521017,
-    "lng": 25.099856,
-    "address": "V. Kudirkos g. 4, Anykščiai",
+    "id": 2075,
+    "lat": 55.525374,
+    "lng": 25.092554,
+    "address": "Šviesos g. 3, Anykščiai",
     "city": "Anykščiai",
     "country": "Lietuva",
     "active": true
@@ -504,141 +504,6 @@
     "active": true
   },
   {
-    "id": 2404,
-    "lat": 55.283165,
-    "lng": 23.958643,
-    "address": "A.Kanapinsko g. 4, Kėdainiai",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2029,
-    "lat": 55.284046,
-    "lng": 23.952465,
-    "address": "Chemikų g. 13, Kėdainiai",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2026,
-    "lat": 55.284739,
-    "lng": 23.973564,
-    "address": "Josvainių g. 39, Kėdainiai",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2025,
-    "lat": 55.283656,
-    "lng": 23.972669,
-    "address": "Josvainių g. 43, Kėdainiai",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2348,
-    "lat": 55.27462,
-    "lng": 23.955054,
-    "address": "Kauno RATC J. Basanavičiaus",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2027,
-    "lat": 55.30385,
-    "lng": 23.987525,
-    "address": "Liepų al. 15, Kėdainiai",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2408,
-    "lat": 55.420549,
-    "lng": 24.238892,
-    "address": "Liepų g. 5, Pavermenys, Truskavos sen., Kėdainių r.",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2028,
-    "lat": 55.281795,
-    "lng": 23.961607,
-    "address": "Mindaugo g. 11B, Kėdainiai",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2409,
-    "lat": 55.302136,
-    "lng": 24.004572,
-    "address": "Nevėžio g. 13, Vilainiai, Vilainių sen., Kėdainių r.",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2407,
-    "lat": 55.279187,
-    "lng": 24.252866,
-    "address": "Obelies g. 1B, Šėta, Šėtos sen., Kėdainių r.",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2030,
-    "lat": 55.291916,
-    "lng": 23.985808,
-    "address": "P. Lukšio g. 10, Kėdainiai",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2405,
-    "lat": 55.281258,
-    "lng": 23.951355,
-    "address": "Respublikos g. 12 A, Kėdainiai",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2402,
-    "lat": 55.397975,
-    "lng": 23.863719,
-    "address": "Ruokio g. 4, Akademija, Dotnuvos sen., Kėdainių r.",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2031,
-    "lat": 55.251634,
-    "lng": 23.959619,
-    "address": "V. Koncevičiaus g. 6, Pelėdnagiai, Kėdainių r.",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2403,
-    "lat": 55.363977,
-    "lng": 23.888957,
-    "address": "Vytauto g. 82, Dotnuva, Dotnuvos sen., Kėdainių r.",
-    "city": "Kėdainiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 2251,
     "lat": 55.688334,
     "lng": 21.16591,
@@ -738,19 +603,19 @@
     "active": true
   },
   {
-    "id": 1872,
-    "lat": 55.724324,
-    "lng": 21.148938,
-    "address": "Klaipėdos RATC Šiaurės",
+    "id": 1871,
+    "lat": 55.704059,
+    "lng": 21.170161,
+    "address": "Klaipėdos RATC Tilžės",
     "city": "Klaipėda",
     "country": "Lietuva",
     "active": true
   },
   {
-    "id": 1871,
-    "lat": 55.704059,
-    "lng": 21.170161,
-    "address": "Klaipėdos RATC Tilžės",
+    "id": 1872,
+    "lat": 55.724324,
+    "lng": 21.148938,
+    "address": "Klaipėdos RATC Šiaurės",
     "city": "Klaipėda",
     "country": "Lietuva",
     "active": true
@@ -864,15 +729,6 @@
     "active": true
   },
   {
-    "id": 2263,
-    "lat": 55.67685,
-    "lng": 21.185782,
-    "address": "Šiaulių g. 1, Klaipėda",
-    "city": "Klaipėda",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 2278,
     "lat": 55.699259,
     "lng": 21.149265,
@@ -927,11 +783,29 @@
     "active": true
   },
   {
+    "id": 2263,
+    "lat": 55.67685,
+    "lng": 21.185782,
+    "address": "Šiaulių g. 1, Klaipėda",
+    "city": "Klaipėda",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 2248,
     "lat": 55.671982,
     "lng": 21.173859,
     "address": "Žardininkų g. 16, Klaipėda",
     "city": "Klaipėda",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1869,
+    "lat": 55.576199,
+    "lng": 21.295739,
+    "address": "Gargždų švara Slyvų",
+    "city": "Klaipėdos r.",
     "country": "Lietuva",
     "active": true
   },
@@ -954,15 +828,6 @@
     "active": true
   },
   {
-    "id": 1869,
-    "lat": 55.576199,
-    "lng": 21.295739,
-    "address": "Gargždų švara Slyvų",
-    "city": "Klaipėdos r.",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 2416,
     "lat": 55.888321,
     "lng": 21.21865,
@@ -972,19 +837,19 @@
     "active": true
   },
   {
-    "id": 2414,
-    "lat": 55.888178,
-    "lng": 21.244278,
-    "address": "Kęstučio g. 5, Kretinga",
+    "id": 2418,
+    "lat": 55.866359,
+    "lng": 21.219685,
+    "address": "Klaipėdos g. 135, Kretinga",
     "city": "Kretinga",
     "country": "Lietuva",
     "active": true
   },
   {
-    "id": 2418,
-    "lat": 55.866359,
-    "lng": 21.219685,
-    "address": "Klaipėdos g. 135, Kretinga",
+    "id": 2414,
+    "lat": 55.888178,
+    "lng": 21.244278,
+    "address": "Kęstučio g. 5, Kretinga",
     "city": "Kretinga",
     "country": "Lietuva",
     "active": true
@@ -1125,6 +990,141 @@
     "active": true
   },
   {
+    "id": 2404,
+    "lat": 55.283165,
+    "lng": 23.958643,
+    "address": "A.Kanapinsko g. 4, Kėdainiai",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2029,
+    "lat": 55.284046,
+    "lng": 23.952465,
+    "address": "Chemikų g. 13, Kėdainiai",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2026,
+    "lat": 55.284739,
+    "lng": 23.973564,
+    "address": "Josvainių g. 39, Kėdainiai",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2025,
+    "lat": 55.283656,
+    "lng": 23.972669,
+    "address": "Josvainių g. 43, Kėdainiai",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2348,
+    "lat": 55.27462,
+    "lng": 23.955054,
+    "address": "Kauno RATC J. Basanavičiaus",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2027,
+    "lat": 55.30385,
+    "lng": 23.987525,
+    "address": "Liepų al. 15, Kėdainiai",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2408,
+    "lat": 55.420549,
+    "lng": 24.238892,
+    "address": "Liepų g. 5, Pavermenys, Truskavos sen., Kėdainių r.",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2028,
+    "lat": 55.281795,
+    "lng": 23.961607,
+    "address": "Mindaugo g. 11B, Kėdainiai",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2409,
+    "lat": 55.302136,
+    "lng": 24.004572,
+    "address": "Nevėžio g. 13, Vilainiai, Vilainių sen., Kėdainių r.",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2407,
+    "lat": 55.279187,
+    "lng": 24.252866,
+    "address": "Obelies g. 1B, Šėta, Šėtos sen., Kėdainių r.",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2030,
+    "lat": 55.291916,
+    "lng": 23.985808,
+    "address": "P. Lukšio g. 10, Kėdainiai",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2405,
+    "lat": 55.281258,
+    "lng": 23.951355,
+    "address": "Respublikos g. 12 A, Kėdainiai",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2402,
+    "lat": 55.397975,
+    "lng": 23.863719,
+    "address": "Ruokio g. 4, Akademija, Dotnuvos sen., Kėdainių r.",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2031,
+    "lat": 55.251634,
+    "lng": 23.959619,
+    "address": "V. Koncevičiaus g. 6, Pelėdnagiai, Kėdainių r.",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2403,
+    "lat": 55.363977,
+    "lng": 23.888957,
+    "address": "Vytauto g. 82, Dotnuva, Dotnuvos sen., Kėdainių r.",
+    "city": "Kėdainiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 1993,
     "lat": 54.566984,
     "lng": 23.365491,
@@ -1224,15 +1224,6 @@
     "active": true
   },
   {
-    "id": 1764,
-    "lat": 55.224615,
-    "lng": 25.4108204,
-    "address": "Ąžuolų g. 11, Molėtai",
-    "city": "Molėtai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 1767,
     "lat": 55.225947,
     "lng": 25.42581,
@@ -1273,6 +1264,15 @@
     "lat": 55.220925,
     "lng": 25.40622,
     "address": "Melioratorių g. 4, Molėtai",
+    "city": "Molėtai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1764,
+    "lat": 55.224615,
+    "lng": 25.4108204,
+    "address": "Ąžuolų g. 11, Molėtai",
     "city": "Molėtai",
     "country": "Lietuva",
     "active": true
@@ -1647,168 +1647,6 @@
     "active": true
   },
   {
-    "id": 2363,
-    "lat": 54.957482,
-    "lng": 23.036476,
-    "address": "Draugystės takas 3, Šakiai",
-    "city": "Šakiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2364,
-    "lat": 54.958426,
-    "lng": 23.038334,
-    "address": "Jaunystės takas 3, Šakiai",
-    "city": "Šakiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2367,
-    "lat": 54.954968,
-    "lng": 23.044063,
-    "address": "Nepriklausomybės g. 8, Šakiai",
-    "city": "Šakiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2362,
-    "lat": 54.953228,
-    "lng": 23.057377,
-    "address": "V. Kudirkos g. 142, Šakiai",
-    "city": "Šakiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2366,
-    "lat": 54.953248,
-    "lng": 23.042774,
-    "address": "V. Kudirkos g. 92, Šakiai",
-    "city": "Šakiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2365,
-    "lat": 54.955492,
-    "lng": 23.040121,
-    "address": "Vytauto g. 10, Šakiai",
-    "city": "Šakiai",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1977,
-    "lat": 55.485935,
-    "lng": 22.175144,
-    "address": "Dariaus ir Girėno g. 51, Šilalė",
-    "city": "Šilalė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1976,
-    "lat": 55.486451,
-    "lng": 22.189848,
-    "address": "Kovo 11-osios g. 25, Šilalė",
-    "city": "Šilalė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1975,
-    "lat": 55.488947,
-    "lng": 22.186968,
-    "address": "Maironio g. 19, Šilalė",
-    "city": "Šilalė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1978,
-    "lat": 55.491039,
-    "lng": 22.185601,
-    "address": "Vasario 16-osios g. 16, Šilalė",
-    "city": "Šilalė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1884,
-    "lat": 55.34967,
-    "lng": 21.474501,
-    "address": "Cintjoniškių g. 16, Šilutė",
-    "city": "Šilutė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1885,
-    "lat": 55.348676,
-    "lng": 21.468342,
-    "address": "Gluosnių g. 5, Šilutė",
-    "city": "Šilutė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1890,
-    "lat": 55.341053,
-    "lng": 21.474717,
-    "address": "H. Zudermano g. 5, Šilutė",
-    "city": "Šilutė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1889,
-    "lat": 55.339334,
-    "lng": 21.46655,
-    "address": "Liepų g. 13, Šilutė",
-    "city": "Šilutė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1888,
-    "lat": 55.347367,
-    "lng": 21.479224,
-    "address": "Melioratorių al. 10, Šilutė",
-    "city": "Šilutė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1887,
-    "lat": 55.345558,
-    "lng": 21.480502,
-    "address": "Melioratorių al. 3, Šilutė",
-    "city": "Šilutė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1886,
-    "lat": 55.346132,
-    "lng": 21.47637,
-    "address": "V. Kudirkos g. 8, Šilutė",
-    "city": "Šilutė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1876,
-    "lat": 55.338532,
-    "lng": 21.576442,
-    "address": "Klaipėdos RATC Šyšos",
-    "city": "Šilutės r.",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 1941,
     "lat": 56.268374,
     "lng": 21.516719,
@@ -1827,19 +1665,19 @@
     "active": true
   },
   {
-    "id": 1944,
-    "lat": 56.166888,
-    "lng": 21.577356,
-    "address": "Kęstučio g. 2, Mosėdis, Skuodo r. sav.",
+    "id": 1926,
+    "lat": 56.271689,
+    "lng": 21.507655,
+    "address": "Klevų g. 7, Skuodas",
     "city": "Skuodas",
     "country": "Lietuva",
     "active": true
   },
   {
-    "id": 1926,
-    "lat": 56.271689,
-    "lng": 21.507655,
-    "address": "Klevų g. 7, Skuodas",
+    "id": 1944,
+    "lat": 56.166888,
+    "lng": 21.577356,
+    "address": "Kęstučio g. 2, Mosėdis, Skuodo r. sav.",
     "city": "Skuodas",
     "country": "Lietuva",
     "active": true
@@ -1881,15 +1719,6 @@
     "active": true
   },
   {
-    "id": 1940,
-    "lat": 56.272589,
-    "lng": 21.527328,
-    "address": "Šatrijos g. 6, Skuodas",
-    "city": "Skuodas",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 1943,
     "lat": 56.278191,
     "lng": 21.854582,
@@ -1912,6 +1741,15 @@
     "lat": 56.270587,
     "lng": 21.536915,
     "address": "Vilniaus g. 24, Skuodas",
+    "city": "Skuodas",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1940,
+    "lat": 56.272589,
+    "lng": 21.527328,
+    "address": "Šatrijos g. 6, Skuodas",
     "city": "Skuodas",
     "country": "Lietuva",
     "active": true
@@ -2238,7 +2076,7 @@
     "address": "Algimanto Petro Kavoliuko g. 6, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2616,
@@ -2247,7 +2085,7 @@
     "address": "Antakalnio g. 26B, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2603,
@@ -2256,7 +2094,7 @@
     "address": "Antakalnio g. 33, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2604,
@@ -2274,7 +2112,7 @@
     "address": "Antavilių g. 17A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2571,
@@ -2283,7 +2121,7 @@
     "address": "Apkasų g. 13, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2702,
@@ -2292,7 +2130,7 @@
     "address": "Apolinaro Juozo Povilaičio g. 20, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2650,
@@ -2310,7 +2148,7 @@
     "address": "Architektų g. 19, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2657,
@@ -2328,7 +2166,7 @@
     "address": "Architektų g. 43, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2548,
@@ -2364,7 +2202,7 @@
     "address": "Bajorų kel. 4, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2678,
@@ -2391,7 +2229,7 @@
     "address": "Dangeručio g. 1, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2661,
@@ -2409,7 +2247,7 @@
     "address": "Daugėliškio g. 33, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2551,
@@ -2418,7 +2256,7 @@
     "address": "Didlaukio g. 1, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2552,
@@ -2427,7 +2265,7 @@
     "address": "Didlaukio g. 61, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2553,
@@ -2436,7 +2274,25 @@
     "address": "Didlaukio g. 80, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
+  },
+  {
+    "id": 2662,
+    "lat": 54.665271,
+    "lng": 25.276378,
+    "address": "Dzūkų g. 1, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
+  },
+  {
+    "id": 2670,
+    "lat": 54.66442,
+    "lng": 25.28954,
+    "address": "Dzūkų g. 57, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
   },
   {
     "id": 2626,
@@ -2448,31 +2304,13 @@
     "active": true
   },
   {
-    "id": 2662,
-    "lat": 54.665271,
-    "lng": 25.276378,
-    "address": "Dzūkų g. 1, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2670,
-    "lat": 54.66442,
-    "lng": 25.28954,
-    "address": "Dzūkų g. 57, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 2669,
     "lat": 54.6214,
     "lng": 25.24351,
     "address": "Eišiškių pl. 78, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2652,
@@ -2481,7 +2319,7 @@
     "address": "Erfurto g. 1, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2621,
@@ -2490,7 +2328,7 @@
     "address": "Estų g. 1, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2634,
@@ -2499,7 +2337,7 @@
     "address": "Fabijoniškių g. 3B, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2635,
@@ -2526,7 +2364,7 @@
     "address": "Fabijoniškių g. 7, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2755,
@@ -2535,7 +2373,7 @@
     "address": "Fabriko g. 55, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2747,
@@ -2544,7 +2382,7 @@
     "address": "Filaretų g. 38, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2588,
@@ -2571,7 +2409,7 @@
     "address": "Geležinio Vilko g. 9, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2672,
@@ -2580,7 +2418,7 @@
     "address": "Gelvonų g. 35A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2619,
@@ -2589,7 +2427,7 @@
     "address": "Genių g. 2, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2723,
@@ -2598,7 +2436,7 @@
     "address": "Gerosios Vilties g. 44, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2682,
@@ -2607,7 +2445,7 @@
     "address": "Gilužio g. 5, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2590,
@@ -2616,7 +2454,7 @@
     "address": "Grigalaukio g. 32, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2625,
@@ -2625,7 +2463,7 @@
     "address": "Gurių Sodų 2-oji g. 7, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2606,
@@ -2643,7 +2481,7 @@
     "address": "Helsinkio g. 16, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2687,
@@ -2655,22 +2493,13 @@
     "active": true
   },
   {
-    "id": 2684,
-    "lat": 54.710539,
-    "lng": 25.182255,
-    "address": "Įsruties g. 30, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 2554,
     "lat": 54.760653,
     "lng": 25.282895,
     "address": "J. Franko g. 2A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2739,
@@ -2742,7 +2571,7 @@
     "address": "Jurgio Baltrušaičio g. 3, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2696,
@@ -2760,7 +2589,7 @@
     "address": "Justiniškių g. 49, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2694,
@@ -2769,7 +2598,7 @@
     "address": "Justiniškių g. 91, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2614,
@@ -2778,7 +2607,7 @@
     "address": "Kalno g. 74, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2566,
@@ -2796,7 +2625,7 @@
     "address": "Kalvarijų g. 156, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2727,
@@ -2805,7 +2634,7 @@
     "address": "Kalvarijų g. 180, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2725,
@@ -2823,7 +2652,7 @@
     "address": "Kapsų g. 19A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2664,
@@ -2841,7 +2670,7 @@
     "address": "Karaliaučiaus g. 13, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2681,
@@ -2850,7 +2679,7 @@
     "address": "Karaliaučiaus g. 26, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2583,
@@ -2859,7 +2688,7 @@
     "address": "Kareivių g. 4, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2716,
@@ -2868,7 +2697,7 @@
     "address": "Karmelitų g. 5, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2644,
@@ -2886,7 +2715,7 @@
     "address": "Kauno g. 34, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2560,
@@ -2904,13 +2733,31 @@
     "address": "Kedrų g. 2A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2607,
     "lat": 54.72928,
     "lng": 25.37414,
     "address": "Keramikų g. 1, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
+  },
+  {
+    "id": 2753,
+    "lat": 54.67134,
+    "lng": 25.09022,
+    "address": "Kovo 11-osios g. 30, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
+  },
+  {
+    "id": 2751,
+    "lat": 54.669349,
+    "lng": 25.096716,
+    "address": "Kovo 11-osios g. 39A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
     "active": true
@@ -2925,31 +2772,13 @@
     "active": true
   },
   {
-    "id": 2753,
-    "lat": 54.67134,
-    "lng": 25.09022,
-    "address": "Kovo 11-osios g. 30, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2751,
-    "lat": 54.669349,
-    "lng": 25.096716,
-    "address": "Kovo 11-osios g. 39A, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 2705,
     "lat": 54.690101,
     "lng": 25.210555,
     "address": "Laisvės pr. 26, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2598,
@@ -2958,7 +2787,7 @@
     "address": "Laisvės pr. 85A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2655,
@@ -2976,7 +2805,7 @@
     "address": "Lazdynėlių g. 38, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2752,
@@ -2985,7 +2814,7 @@
     "address": "Lentvario g. 2A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2708,
@@ -3003,7 +2832,7 @@
     "address": "Liepkalnio g. 114, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2729,
@@ -3030,7 +2859,7 @@
     "address": "Linksmoji g. 77, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2637,
@@ -3057,7 +2886,7 @@
     "address": "Loretos Asanavičiūtės g. 20, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2707,
@@ -3066,7 +2895,7 @@
     "address": "Loretos Asanavičiūtės g. 29, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2712,
@@ -3075,7 +2904,7 @@
     "address": "Maironio g. 25, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2601,
@@ -3111,7 +2940,7 @@
     "address": "Mokyklos g. 23A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2744,
@@ -3129,7 +2958,7 @@
     "address": "Naujininkų g. 1, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2609,
@@ -3138,7 +2967,7 @@
     "address": "Nemenčinės pl. 2, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2610,
@@ -3147,7 +2976,7 @@
     "address": "Nemenčinės pl. 33, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2653,
@@ -3174,7 +3003,7 @@
     "address": "Ozo g. 22, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2579,
@@ -3201,7 +3030,7 @@
     "address": "Pakalnio g. 18, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2743,
@@ -3219,25 +3048,7 @@
     "address": "Parodų g. 1A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2602,
-    "lat": 54.7315,
-    "lng": 25.23128,
-    "address": "Pašilaičių g. 12A, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2600,
-    "lat": 54.73041,
-    "lng": 25.23567,
-    "address": "Pašilaičių g. 1D, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2591,
@@ -3246,7 +3057,25 @@
     "address": "Pavilnionių g. 22, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
+  },
+  {
+    "id": 2602,
+    "lat": 54.7315,
+    "lng": 25.23128,
+    "address": "Pašilaičių g. 12A, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
+  },
+  {
+    "id": 2600,
+    "lat": 54.73041,
+    "lng": 25.23567,
+    "address": "Pašilaičių g. 1D, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
   },
   {
     "id": 2666,
@@ -3300,7 +3129,7 @@
     "address": "Rasų g. 35, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2710,
@@ -3309,7 +3138,7 @@
     "address": "Rasų g. 9A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2730,
@@ -3318,7 +3147,7 @@
     "address": "Rinktinės g. 42, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2721,
@@ -3336,7 +3165,7 @@
     "address": "Rodūnios kel. 24, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2557,
@@ -3345,7 +3174,7 @@
     "address": "Rugių g. 1, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2693,
@@ -3363,7 +3192,7 @@
     "address": "Rygos g. 41, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2648,
@@ -3372,7 +3201,7 @@
     "address": "S. Konarskio g. 17, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2720,
@@ -3390,7 +3219,7 @@
     "address": "S. Stanevičiaus g. 22, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2636,
@@ -3399,7 +3228,7 @@
     "address": "S. Stanevičiaus g. 47, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2580,
@@ -3417,7 +3246,7 @@
     "address": "S. Žukausko g. 35, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2741,
@@ -3426,7 +3255,7 @@
     "address": "Saltoniškių g. 9, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 1754,
@@ -3444,7 +3273,7 @@
     "address": "Saulėtekio al. 36, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2706,
@@ -3471,25 +3300,7 @@
     "address": "Savanorių pr. 31, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2585,
-    "lat": 54.69523,
-    "lng": 25.29398,
-    "address": "Šeimyniškių g. 23, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2742,
-    "lat": 54.69817,
-    "lng": 25.247001,
-    "address": "Sėlių g. 54, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2756,
@@ -3498,34 +3309,7 @@
     "address": "Senasis Gardino pl. 30, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2673,
-    "lat": 54.71302,
-    "lng": 25.25152,
-    "address": "Šeškinės g. 15, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2674,
-    "lat": 54.715047,
-    "lng": 25.246265,
-    "address": "Šeškinės g. 32, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2622,
-    "lat": 54.70142,
-    "lng": 25.41109,
-    "address": "Šiaurės g. 37, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2675,
@@ -3534,7 +3318,7 @@
     "address": "Siesikų g. 21, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2564,
@@ -3543,7 +3327,7 @@
     "address": "Skersinės g. 17, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2722,
@@ -3552,7 +3336,7 @@
     "address": "Skroblų g. 10, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2714,
@@ -3588,7 +3372,7 @@
     "address": "Subačiaus g. 112, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2746,
@@ -3597,7 +3381,16 @@
     "address": "Subačiaus g. 64, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
+  },
+  {
+    "id": 2742,
+    "lat": 54.69817,
+    "lng": 25.247001,
+    "address": "Sėlių g. 54, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
   },
   {
     "id": 2699,
@@ -3624,7 +3417,7 @@
     "address": "Taikos g. 259, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2697,
@@ -3633,7 +3426,7 @@
     "address": "Taikos g. 39, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2692,
@@ -3642,7 +3435,7 @@
     "address": "Taikos g. 70, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2642,
@@ -3660,7 +3453,7 @@
     "address": "Tuskulėnų g. 54, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2677,
@@ -3696,7 +3489,7 @@
     "address": "Užupio g. 21, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2613,
@@ -3723,7 +3516,7 @@
     "address": "Vaivadiškių g. 2, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2638,
@@ -3735,22 +3528,13 @@
     "active": true
   },
   {
-    "id": 2633,
-    "lat": 54.741101,
-    "lng": 25.229489,
-    "address": "Vėtrungių g. 71, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 2733,
     "lat": 54.709926,
     "lng": 25.221602,
     "address": "Viršuliškių g. 30, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2734,
@@ -3768,7 +3552,7 @@
     "address": "Viršuliškių g. 73, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2737,
@@ -3777,7 +3561,7 @@
     "address": "Viršuliškių g. 75A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2736,
@@ -3813,7 +3597,7 @@
     "address": "Vydūno g. 2, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2683,
@@ -3834,19 +3618,10 @@
     "active": true
   },
   {
-    "id": 2726,
-    "lat": 54.703952,
-    "lng": 25.28211,
-    "address": "Žalgirio g. 109, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2561,
-    "lat": 54.80016,
-    "lng": 25.34871,
-    "address": "Žaliųjų Ežerų g. 207, Vilnius",
+    "id": 2633,
+    "lat": 54.741101,
+    "lng": 25.229489,
+    "address": "Vėtrungių g. 71, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
     "active": true
@@ -3858,7 +3633,79 @@
     "address": "Zarasų g. 5A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
+    "active": false
+  },
+  {
+    "id": 2688,
+    "lat": 54.71304,
+    "lng": 25.16007,
+    "address": "Zujūnų g. 5, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
     "active": true
+  },
+  {
+    "id": 2684,
+    "lat": 54.710539,
+    "lng": 25.182255,
+    "address": "Įsruties g. 30, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
+  },
+  {
+    "id": 2585,
+    "lat": 54.69523,
+    "lng": 25.29398,
+    "address": "Šeimyniškių g. 23, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2673,
+    "lat": 54.71302,
+    "lng": 25.25152,
+    "address": "Šeškinės g. 15, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
+  },
+  {
+    "id": 2674,
+    "lat": 54.715047,
+    "lng": 25.246265,
+    "address": "Šeškinės g. 32, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2622,
+    "lat": 54.70142,
+    "lng": 25.41109,
+    "address": "Šiaurės g. 37, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
+  },
+  {
+    "id": 2726,
+    "lat": 54.703952,
+    "lng": 25.28211,
+    "address": "Žalgirio g. 109, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
+  },
+  {
+    "id": 2561,
+    "lat": 54.80016,
+    "lng": 25.34871,
+    "address": "Žaliųjų Ežerų g. 207, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": false
   },
   {
     "id": 2645,
@@ -3876,7 +3723,7 @@
     "address": "Žemynos g. 2, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2573,
@@ -3885,7 +3732,7 @@
     "address": "Žirmūnų g. 106E, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2575,
@@ -3894,7 +3741,7 @@
     "address": "Žirmūnų g. 145, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2569,
@@ -3912,7 +3759,7 @@
     "address": "Žirmūnų g. 44, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2568,
@@ -3921,7 +3768,7 @@
     "address": "Žirmūnų g. 48A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2576,
@@ -3939,16 +3786,7 @@
     "address": "Žirmūnų g. 89A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2688,
-    "lat": 54.71304,
-    "lng": 25.16007,
-    "address": "Zujūnų g. 5, Vilnius",
-    "city": "Vilnius",
-    "country": "Lietuva",
-    "active": true
+    "active": false
   },
   {
     "id": 2615,
@@ -4041,24 +3879,6 @@
     "active": true
   },
   {
-    "id": 1820,
-    "lat": 56.361934,
-    "lng": 23.249937,
-    "address": "Gedimino g. 1, Žagarė",
-    "city": "Žagarė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 1821,
-    "lat": 56.359972,
-    "lng": 23.254146,
-    "address": "Miesto al. 14, Žagarė",
-    "city": "Žagarė",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 1955,
     "lat": 55.809704,
     "lng": 25.923025,
@@ -4109,6 +3929,186 @@
     "lng": 26.26408,
     "address": "Vytauto g. 54, Zarasai",
     "city": "Zarasai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2363,
+    "lat": 54.957482,
+    "lng": 23.036476,
+    "address": "Draugystės takas 3, Šakiai",
+    "city": "Šakiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2364,
+    "lat": 54.958426,
+    "lng": 23.038334,
+    "address": "Jaunystės takas 3, Šakiai",
+    "city": "Šakiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2367,
+    "lat": 54.954968,
+    "lng": 23.044063,
+    "address": "Nepriklausomybės g. 8, Šakiai",
+    "city": "Šakiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2362,
+    "lat": 54.953228,
+    "lng": 23.057377,
+    "address": "V. Kudirkos g. 142, Šakiai",
+    "city": "Šakiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2366,
+    "lat": 54.953248,
+    "lng": 23.042774,
+    "address": "V. Kudirkos g. 92, Šakiai",
+    "city": "Šakiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2365,
+    "lat": 54.955492,
+    "lng": 23.040121,
+    "address": "Vytauto g. 10, Šakiai",
+    "city": "Šakiai",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1977,
+    "lat": 55.485935,
+    "lng": 22.175144,
+    "address": "Dariaus ir Girėno g. 51, Šilalė",
+    "city": "Šilalė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1976,
+    "lat": 55.486451,
+    "lng": 22.189848,
+    "address": "Kovo 11-osios g. 25, Šilalė",
+    "city": "Šilalė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1975,
+    "lat": 55.488947,
+    "lng": 22.186968,
+    "address": "Maironio g. 19, Šilalė",
+    "city": "Šilalė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1978,
+    "lat": 55.491039,
+    "lng": 22.185601,
+    "address": "Vasario 16-osios g. 16, Šilalė",
+    "city": "Šilalė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1884,
+    "lat": 55.34967,
+    "lng": 21.474501,
+    "address": "Cintjoniškių g. 16, Šilutė",
+    "city": "Šilutė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1885,
+    "lat": 55.348676,
+    "lng": 21.468342,
+    "address": "Gluosnių g. 5, Šilutė",
+    "city": "Šilutė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1890,
+    "lat": 55.341053,
+    "lng": 21.474717,
+    "address": "H. Zudermano g. 5, Šilutė",
+    "city": "Šilutė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1889,
+    "lat": 55.339334,
+    "lng": 21.46655,
+    "address": "Liepų g. 13, Šilutė",
+    "city": "Šilutė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1888,
+    "lat": 55.347367,
+    "lng": 21.479224,
+    "address": "Melioratorių al. 10, Šilutė",
+    "city": "Šilutė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1887,
+    "lat": 55.345558,
+    "lng": 21.480502,
+    "address": "Melioratorių al. 3, Šilutė",
+    "city": "Šilutė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1886,
+    "lat": 55.346132,
+    "lng": 21.47637,
+    "address": "V. Kudirkos g. 8, Šilutė",
+    "city": "Šilutė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1876,
+    "lat": 55.338532,
+    "lng": 21.576442,
+    "address": "Klaipėdos RATC Šyšos",
+    "city": "Šilutės r.",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1820,
+    "lat": 56.361934,
+    "lng": 23.249937,
+    "address": "Gedimino g. 1, Žagarė",
+    "city": "Žagarė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 1821,
+    "lat": 56.359972,
+    "lng": 23.254146,
+    "address": "Miesto al. 14, Žagarė",
+    "city": "Žagarė",
     "country": "Lietuva",
     "active": true
   }
