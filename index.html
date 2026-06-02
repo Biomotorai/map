@@ -13,10 +13,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css">
 <style>
 :root {
-  --color-primary: #F4B400;
-  --color-primary-dark: #D89B00;
+  --color-primary: #FFC115;
+  --color-primary-dark: #F99D1C;
   --color-primary-light: #FFF8E1;
-  --color-text: #2C2C2A;
+  --color-accent: #066F3A;
+  --color-text: #231F20;
   --color-text-muted: #6B6B68;
   --color-bg: #ffffff;
   --color-bg-alt: #FAFAF7;
@@ -89,9 +90,10 @@ html, body {
   text-transform: uppercase;
 }
 .lang-switch a.active {
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--color-primary);
+  color: #231F20;
   box-shadow: var(--shadow-sm);
+  font-weight: 700;
 }
 .action-bar {
   display: flex;
@@ -165,8 +167,8 @@ html, body {
   margin: 0;
 }
 .result-dist {
-  background: var(--color-info-light);
-  color: var(--color-info);
+  background: #E8F5EE;
+  color: #066F3A;
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 13px;
@@ -252,13 +254,13 @@ html, body {
 .marker-cluster-small,
 .marker-cluster-medium,
 .marker-cluster-large {
-  background-color: rgba(244, 180, 0, 0.4) !important;
+  background-color: rgba(255, 193, 21, 0.4) !important;
 }
 .marker-cluster-small div,
 .marker-cluster-medium div,
 .marker-cluster-large div {
-  background-color: rgba(244, 180, 0, 0.9) !important;
-  color: #2C2C2A !important;
+  background-color: rgba(255, 193, 21, 0.9) !important;
+  color: #231F20 !important;
   font-weight: 700 !important;
 }
 .footer {
@@ -510,7 +512,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 
 const yellowIcon = L.divIcon({
   className: 'biomotorai-pin',
-  html: '<div style="background:#F4B400;width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #D89B00;box-shadow:0 2px 4px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;"><div style="transform:rotate(45deg);width:8px;height:8px;background:#2C2C2A;border-radius:50%;"></div></div>',
+  html: '<div style="background:#FFC115;width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #F99D1C;box-shadow:0 2px 4px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;"><div style="transform:rotate(45deg);width:8px;height:8px;background:#231F20;border-radius:50%;"></div></div>',
   iconSize: [26, 26],
   iconAnchor: [13, 26],
   popupAnchor: [0, -24]
