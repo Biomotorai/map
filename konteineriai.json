@@ -2418,7 +2418,7 @@
     "address": "Didlaukio g. 1, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2552,
@@ -2427,7 +2427,7 @@
     "address": "Didlaukio g. 61, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2553,
@@ -2436,7 +2436,7 @@
     "address": "Didlaukio g. 80, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2626,
@@ -2472,7 +2472,7 @@
     "address": "Eišiškių pl. 78, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2652,
@@ -2544,7 +2544,7 @@
     "address": "Filaretų g. 38, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2588,
@@ -2589,7 +2589,7 @@
     "address": "Genių g. 2, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2723,
@@ -2625,7 +2625,7 @@
     "address": "Gurių Sodų 2-oji g. 7, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2606,
@@ -2670,7 +2670,7 @@
     "address": "J. Franko g. 2A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2739,
@@ -3030,7 +3030,7 @@
     "address": "Linksmoji g. 77, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2637,
@@ -3111,7 +3111,7 @@
     "address": "Mokyklos g. 23A, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2744,
@@ -3201,7 +3201,7 @@
     "address": "Pakalnio g. 18, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2743,
@@ -3300,7 +3300,7 @@
     "address": "Rasų g. 35, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2710,
@@ -3336,7 +3336,7 @@
     "address": "Rodūnios kel. 24, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2557,
@@ -3345,7 +3345,7 @@
     "address": "Rugių g. 1, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2693,
@@ -3525,7 +3525,7 @@
     "address": "Šiaurės g. 37, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2675,
@@ -3543,7 +3543,7 @@
     "address": "Skersinės g. 17, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2722,
@@ -3588,7 +3588,7 @@
     "address": "Subačiaus g. 112, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2746,
@@ -3849,7 +3849,7 @@
     "address": "Žaliųjų Ežerų g. 207, Vilnius",
     "city": "Vilnius",
     "country": "Lietuva",
-    "active": false
+    "active": true
   },
   {
     "id": 2711,
