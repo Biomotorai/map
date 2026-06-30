@@ -5,19 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="description" content="Naudoto aliejaus surinkimo konteinerių žemėlapis. Raskite artimiausią surinkimo vietą.">
 <title>Naudoto aliejaus surinkimo žemėlapis | Biomotorai</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- ===== Google Analytics ===== -->
+<!-- Measurement ID: G-XREM02W3KB (Biomotorai konteinerių žemėlapis) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XREM02W3KB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XREM02W3KB');
+</script>
+<!-- ===== Google Analytics pabaiga ===== -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css">
 <style>
 :root {
-  --color-primary: #FFC115;
-  --color-primary-dark: #F99D1C;
+  --color-primary: #F4B400;
+  --color-primary-dark: #D89B00;
   --color-primary-light: #FFF8E1;
-  --color-accent: #066F3A;
-  --color-text: #231F20;
+  --color-text: #2C2C2A;
   --color-text-muted: #6B6B68;
   --color-bg: #ffffff;
   --color-bg-alt: #FAFAF7;
@@ -32,7 +38,7 @@
 * { box-sizing: border-box; }
 html, body {
   margin: 0; padding: 0;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: var(--color-text);
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
@@ -49,17 +55,6 @@ html, body {
   margin-bottom: 20px;
   flex-wrap: wrap;
   gap: 12px;
-}
-.brand-block {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.brand-logo {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-  flex-shrink: 0;
 }
 .title-block h1 {
   font-size: 24px;
@@ -90,10 +85,9 @@ html, body {
   text-transform: uppercase;
 }
 .lang-switch a.active {
-  background: var(--color-primary);
-  color: #231F20;
+  background: var(--color-bg);
+  color: var(--color-text);
   box-shadow: var(--shadow-sm);
-  font-weight: 700;
 }
 .action-bar {
   display: flex;
@@ -167,8 +161,8 @@ html, body {
   margin: 0;
 }
 .result-dist {
-  background: #E8F5EE;
-  color: #066F3A;
+  background: var(--color-info-light);
+  color: var(--color-info);
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 13px;
@@ -254,13 +248,13 @@ html, body {
 .marker-cluster-small,
 .marker-cluster-medium,
 .marker-cluster-large {
-  background-color: rgba(255, 193, 21, 0.4) !important;
+  background-color: rgba(244, 180, 0, 0.4) !important;
 }
 .marker-cluster-small div,
 .marker-cluster-medium div,
 .marker-cluster-large div {
-  background-color: rgba(255, 193, 21, 0.9) !important;
-  color: #231F20 !important;
+  background-color: rgba(244, 180, 0, 0.9) !important;
+  color: #2C2C2A !important;
   font-weight: 700 !important;
 }
 .footer {
@@ -275,9 +269,7 @@ html, body {
 /* Mobile */
 @media (max-width: 640px) {
   .page { padding: 12px; }
-  .title-block h1 { font-size: 16px; }
-  .title-block p { font-size: 12px; }
-  .brand-logo { height: 30px; }
+  .title-block h1 { font-size: 20px; }
   #map { height: 440px; }
   .btn-primary { width: 100%; justify-content: center; }
   .stats { margin-left: 0; }
@@ -288,12 +280,9 @@ html, body {
 <body>
 <div class="page">
   <div class="header">
-    <div class="brand-block">
-      <img src="BIOMOTORAI_LOGO01.png" alt="Biomotorai" class="brand-logo">
-      <div class="title-block">
-        <h1 id="pageTitle">Naudoto kepimo aliejaus konteineriai</h1>
-        <p id="pageSubtitle" style="display:none"></p>
-      </div>
+    <div class="title-block">
+      <h1 id="pageTitle">Naudoto aliejaus surinkimo žemėlapis</h1>
+      <p id="pageSubtitle">Raskite artimiausią konteinerį naudotam aliejui priduoti</p>
     </div>
     <div class="lang-switch">
       <a href="?lang=lt" data-lang="lt">LT</a>
@@ -364,8 +353,8 @@ html, body {
 // ============================================================
 const T = {
   lt: {
-    title: "Naudoto kepimo aliejaus konteineriai",
-    subtitle: "",
+    title: "Naudoto aliejaus surinkimo žemėlapis",
+    subtitle: "Raskite artimiausią konteinerį naudotam aliejui priduoti",
     findNearest: "Rasti artimiausią konteinerį",
     stats: (n) => `${n} aktyvūs konteineriai`,
     requesting: "Prašoma lokacijos…",
@@ -381,8 +370,8 @@ const T = {
     otherApp: "Kita programa"
   },
   lv: {
-    title: "Lietotās cepamās eļļas konteineri",
-    subtitle: "",
+    title: "Lietotās eļļas savākšanas karte",
+    subtitle: "Atrodiet tuvāko konteineru lietotās eļļas nodošanai",
     findNearest: "Atrast tuvāko konteineru",
     stats: (n) => `${n} aktīvie konteineri`,
     requesting: "Tiek pieprasīta atrašanās vieta…",
@@ -398,8 +387,8 @@ const T = {
     otherApp: "Cita programma"
   },
   ee: {
-    title: "Kasutatud praimimisõli konteinerid",
-    subtitle: "",
+    title: "Kasutatud õli kogumiskaart",
+    subtitle: "Leidke lähim konteiner kasutatud õli üleandmiseks",
     findNearest: "Leia lähim konteiner",
     stats: (n) => `${n} aktiivset konteinerit`,
     requesting: "Asukoha päring…",
@@ -415,8 +404,8 @@ const T = {
     otherApp: "Muu rakendus"
   },
   en: {
-    title: "Used cooking oil containers",
-    subtitle: "",
+    title: "Used cooking oil collection map",
+    subtitle: "Find the nearest container for dropping off used oil",
     findNearest: "Find nearest container",
     stats: (n) => `${n} active containers`,
     requesting: "Requesting location…",
@@ -432,8 +421,8 @@ const T = {
     otherApp: "Other app"
   },
   ru: {
-    title: "Контейнеры для сбора использованного масла",
-    subtitle: "",
+    title: "Карта сбора использованного масла",
+    subtitle: "Найдите ближайший контейнер для сдачи использованного масла",
     findNearest: "Найти ближайший контейнер",
     stats: (n) => `${n} активных контейнеров`,
     requesting: "Запрос местоположения…",
@@ -512,7 +501,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 
 const yellowIcon = L.divIcon({
   className: 'biomotorai-pin',
-  html: '<div style="background:#FFC115;width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #F99D1C;box-shadow:0 2px 4px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;"><div style="transform:rotate(45deg);width:8px;height:8px;background:#231F20;border-radius:50%;"></div></div>',
+  html: '<div style="background:#F4B400;width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #D89B00;box-shadow:0 2px 4px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;"><div style="transform:rotate(45deg);width:8px;height:8px;background:#2C2C2A;border-radius:50%;"></div></div>',
   iconSize: [26, 26],
   iconAnchor: [13, 26],
   popupAnchor: [0, -24]
@@ -568,7 +557,7 @@ function buildPopup(c) {
   const gm = `https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lng}&travelmode=driving`;
   const wz = `https://waze.com/ul?ll=${c.lat},${c.lng}&navigate=yes`;
   const ap = `https://maps.apple.com/?daddr=${c.lat},${c.lng}&dirflg=d`;
-  return `<b>${escapeHTML(c.address)}</b><span class="pop-city">${escapeHTML(c.city)}</span><div class="popup-actions"><a href="${gm}" target="_blank" rel="noopener">Google Maps</a><a href="${wz}" target="_blank" rel="noopener">Waze</a><a href="${ap}" target="_blank" rel="noopener">Apple Maps</a></div>`;
+  return `<b>${escapeHTML(c.address)}</b><span class="pop-city">${escapeHTML(c.city)}</span><div class="popup-actions"><a href="${gm}" target="_blank" rel="noopener" onclick="trackNavById(${c.id},'google')">Google Maps</a><a href="${wz}" target="_blank" rel="noopener" onclick="trackNavById(${c.id},'waze')">Waze</a><a href="${ap}" target="_blank" rel="noopener" onclick="trackNavById(${c.id},'apple')">Apple Maps</a></div>`;
 }
 
 function escapeHTML(s) {
@@ -638,6 +627,12 @@ function showNearest(userLat, userLng) {
   document.getElementById('navGeo').href = `geo:${lat},${lng}?q=${lat},${lng}(${name})`;
   document.querySelector('#navGeo').lastChild.textContent = ' ' + t.otherApp;
 
+  // GA sekimas rezultatų kortelės mygtukams
+  document.getElementById('navGoogle').onclick = () => trackNavById(nearest.id, 'google');
+  document.getElementById('navWaze').onclick   = () => trackNavById(nearest.id, 'waze');
+  document.getElementById('navApple').onclick  = () => trackNavById(nearest.id, 'apple');
+  document.getElementById('navGeo').onclick    = () => trackNavById(nearest.id, 'geo');
+
   const nextHTML = sorted.slice(1, 4).map(c =>
     `<div class="next-item" onclick="focusContainer(${c.id})"><span class="next-item-name">${escapeHTML(c.address)}, ${escapeHTML(c.city)}</span><span class="next-item-dist">${formatDist(c.dist)}</span></div>`
   ).join('');
@@ -683,6 +678,22 @@ function findNearest() {
 
 window.focusContainer = focusContainer;
 window.findNearest = findNearest;
+
+// ============================================================
+// GOOGLE ANALYTICS – navigacijos paspaudimų sekimas
+// ============================================================
+function trackNavById(id, app) {
+  const c = activeContainers.find(x => x.id === id) || allContainers.find(x => x.id === id);
+  if (c && typeof gtag === 'function') {
+    gtag('event', 'navigate_to_container', {
+      container_id: c.id,
+      container_address: c.address,
+      container_city: c.city,
+      nav_app: app
+    });
+  }
+}
+window.trackNavById = trackNavById;
 </script>
 </body>
 </html>
