@@ -2160,6 +2160,69 @@
     "active": true
   },
   {
+    "id": 2758,
+    "lat": 55.507197,
+    "lng": 25.600183,
+    "address": "Aušros g. 49",
+    "city": "Utena",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2759,
+    "lat": 55.491671,
+    "lng": 25.599731,
+    "address": "Gegužės g. 4",
+    "city": "Utena",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2764,
+    "lat": 55.502389,
+    "lng": 25.61552,
+    "address": "J.Basanavičiaus g. 100",
+    "city": "Utena",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2760,
+    "lat": 55.496365,
+    "lng": 25.612499,
+    "address": "Kudirkos g. 32",
+    "city": "Utena",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2762,
+    "lat": 55.507243,
+    "lng": 25.584188,
+    "address": "Taikos g. 35",
+    "city": "Utena",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2761,
+    "lat": 55.496365,
+    "lng": 25.612499,
+    "address": "V.Kudirkos g. 32",
+    "city": "Utena",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2763,
+    "lat": 55.507945,
+    "lng": 25.613641,
+    "address": "Vaižganto g. 32",
+    "city": "Utena",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 1852,
     "lat": 55.373815,
     "lng": 26.209245,
