@@ -2151,6 +2151,15 @@
     "active": true
   },
   {
+    "id": 2757,
+    "lat": 55.51147,
+    "lng": 25.57809,
+    "address": "Aukštakalnio g. 120 Utena",
+    "city": "Utena",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 1852,
     "lat": 55.373815,
     "lng": 26.209245,
