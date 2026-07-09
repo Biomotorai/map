@@ -6,7 +6,7 @@
     "address": "Liiva tee 2, Harkujärve küla",
     "city": "Harkujärve küla",
     "country": "Estija",
-    "active": false
+    "active": true
   },
   {
     "id": 2532,
@@ -2147,6 +2147,15 @@
     "lng": 24.743983,
     "address": "Žiedo g. 3, Ukmergė",
     "city": "Ukmergė",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2757,
+    "lat": 55.51147,
+    "lng": 25.57809,
+    "address": "Aukštakalnio g. 120 Utena",
+    "city": "Utena",
     "country": "Lietuva",
     "active": true
   },
