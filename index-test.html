@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="description" content="Naudoto aliejaus surinkimo konteinerių žemėlapis. Raskite artimiausią surinkimo vietą.">
+<title>Naudoto aliejaus surinkimo žemėlapis | Biomotorai</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css">
+<style>
+:root {
+  --color-primary: #F4B400;
+  --color-primary-dark: #D89B00;
+  --color-primary-light: #FFF8E1;
+  --color-text: #2C2C2A;
+  --color-text-muted: #6B6B68;
+  --color-bg: #ffffff;
+  --color-bg-alt: #FAFAF7;
+  --color-border: #E8E8E2;
+  --color-info: #185FA5;
+  --color-info-light: #E3F0FC;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.title-block h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: var(--color-text);
+}
+.title-block p {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+.lang-switch {
+  display: flex;
+  gap: 4px;
+  background: var(--color-bg-alt);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+.lang-switch a {
+  padding: 6px 10px;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+.lang-switch a.active {
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+.action-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  align-items: stretch;
+}
+.btn-primary {
+  flex: 0 0 calc(50% - 4px);
+  min-width: 0;
+  white-space: nowrap;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: 1px solid var(--color-primary-dark);
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+.btn-primary:hover { background: var(--color-primary-dark); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-primary svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* Paieškos laukas */
+.search-box {
+  flex: 0 0 calc(50% - 4px);
+  min-width: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.search-box:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+.search-box > svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--color-text);
+  padding: 14px 0;
+  min-width: 0;
+}
+.search-box input::placeholder { color: var(--color-text-muted); }
+.search-clear {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px;
+  display: none;
+}
+.search-clear.show { display: block; }
+.search-results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  max-height: 320px;
+  overflow-y: auto;
+  z-index: 1200;
+  display: none;
+}
+.search-results.show { display: block; }
+.search-result-item {
+  padding: 11px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border);
+  transition: background 0.1s;
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover,
+.search-result-item.active { background: var(--color-primary-light); }
+.search-result-name { font-size: 14px; font-weight: 500; color: var(--color-text); }
+.search-result-city { font-size: 12px; color: var(--color-text-muted); margin-top: 2px; }
+.search-result-city b { color: var(--color-primary-dark); font-weight: 700; }
+.search-empty {
+  padding: 14px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+.stats {
+  display: block;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0 2px 14px;
+  text-align: right;
+}
+#map {
+  height: 560px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+.status {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-top: 12px;
+  min-height: 20px;
+}
+.status.error { color: #B94A48; }
+.status.success { color: #2E7D32; }
+.result-card {
+  margin-top: 16px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.result-card.hidden { display: none; }
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+.result-name {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.result-city {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+.result-dist {
+  background: var(--color-info-light);
+  color: var(--color-info);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.nav-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 16px 0 8px;
+  font-weight: 600;
+}
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+}
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-text);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  transition: background 0.15s;
+}
+.nav-btn:hover { background: var(--color-primary-light); border-color: var(--color-primary); }
+.nav-btn svg { width: 16px; height: 16px; }
+.next-list {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+}
+.next-list-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+.next-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background 0.1s;
+  margin: 0 -8px;
+}
+.next-item:hover { background: var(--color-bg-alt); }
+.next-item-name { color: var(--color-text); }
+.next-item-dist { color: var(--color-text-muted); font-weight: 500; }
+.leaflet-popup-content { margin: 14px 16px; font-family: inherit; }
+.leaflet-popup-content b { font-size: 14px; color: var(--color-text); }
+.leaflet-popup-content .pop-city { font-size: 12px; color: var(--color-text-muted); display: block; margin-top: 2px; }
+.popup-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.popup-actions a {
+  font-size: 11px;
+  padding: 6px 10px;
+  background: var(--color-bg-alt);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  font-weight: 600;
+}
+.popup-actions a:hover { background: var(--color-primary-light); }
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background-color: rgba(244, 180, 0, 0.4) !important;
+}
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background-color: rgba(244, 180, 0, 0.9) !important;
+  color: #2C2C2A !important;
+  font-weight: 700 !important;
+}
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 32px;
+  padding: 20px;
+}
+.footer a { color: var(--color-text-muted); text-decoration: underline; }
+
+/* Mobile */
+@media (max-width: 640px) {
+  .page { padding: 12px; }
+  .title-block h1 { font-size: 20px; }
+  #map { height: 440px; }
+  .btn-primary { width: 100%; justify-content: center; }
+  .stats { margin-left: 0; }
+  .action-bar { flex-direction: column; align-items: stretch; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="title-block">
+      <h1 id="pageTitle">Naudoto aliejaus surinkimo žemėlapis</h1>
+      <p id="pageSubtitle">Raskite artimiausią konteinerį naudotam aliejui priduoti</p>
+    </div>
+    <div class="lang-switch">
+      <a href="?lang=lt" data-lang="lt">LT</a>
+      <a href="?lang=lv" data-lang="lv">LV</a>
+      <a href="?lang=ee" data-lang="ee">EE</a>
+      <a href="?lang=en" data-lang="en">EN</a>
+      <a href="?lang=ru" data-lang="ru">RU</a>
+    </div>
+  </div>
+
+  <div class="action-bar">
+    <button class="btn-primary" onclick="findNearest()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+      </svg>
+      <span id="btnFindNearest">Rasti artimiausią konteinerį</span>
+    </button>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="M21 21l-4.3-4.3"/>
+      </svg>
+      <input type="text" id="searchInput" autocomplete="off" placeholder="Įveskite miesto pavadinimą…">
+      <button class="search-clear" id="searchClear" aria-label="Išvalyti">×</button>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+  <span class="stats" id="stats">Kraunama…</span>
+
+  <div id="map"></div>
+  <p class="status" id="statusEl"></p>
+
+  <div class="result-card hidden" id="resultCard">
+    <div class="result-head">
+      <div>
+        <p class="result-name" id="resName"></p>
+        <p class="result-city" id="resCity"></p>
+      </div>
+      <span class="result-dist" id="resDist"></span>
+    </div>
+    <p class="nav-label" id="navLabel">Atidaryti navigaciją:</p>
+    <div class="nav-grid">
+      <a class="nav-btn" id="navGoogle" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+        Google Maps
+      </a>
+      <a class="nav-btn" id="navWaze" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.54 6.63c1.93 3.07 1.4 7.45-1.39 9.83-3.16 2.7-7.85 2.46-10.7-.5l-.06-.07a.93.93 0 00-.7-.3H5.27a3.45 3.45 0 01-3.27-3.46v-.36c0-.4.32-.73.72-.73h1.55c.4 0 .72-.32.72-.72A8.27 8.27 0 0113.27 2c2.94 0 5.7 1.7 7.27 4.63zM8.5 18a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm9 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+        Waze
+      </a>
+      <a class="nav-btn" id="navApple" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 12.5c0-3 2.4-4.4 2.5-4.5-1.4-2-3.5-2.3-4.2-2.3-1.8-.2-3.5 1-4.4 1-.9 0-2.3-1-3.8-1-2 0-3.8 1.1-4.8 2.9-2 3.5-.5 8.7 1.4 11.5.9 1.4 2.1 2.9 3.6 2.9 1.4-.1 2-.9 3.7-.9s2.2.9 3.7.9c1.5 0 2.5-1.4 3.4-2.8 1.1-1.6 1.5-3.2 1.5-3.3-.1 0-2.9-1.1-2.9-4.4zm-3-8c.8-1 1.4-2.4 1.2-3.8-1.2.1-2.6.8-3.4 1.8-.8.9-1.5 2.3-1.3 3.6 1.3.1 2.7-.7 3.5-1.6z"/></svg>
+        Apple Maps
+      </a>
+      <a class="nav-btn" id="navGeo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Kita programa
+      </a>
+    </div>
+    <div class="next-list">
+      <p class="next-list-label" id="nextLabel">Kiti artimiausi:</p>
+      <div id="nextItems"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© <span id="year"></span> UAB „Biomotorai" · Žemėlapis: OpenStreetMap</p>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+<script>
+// ============================================================
+// VERTIMAI / TRANSLATIONS
+// ============================================================
+const T = {
+  lt: {
+    title: "Naudoto aliejaus surinkimo žemėlapis",
+    subtitle: "Raskite artimiausią konteinerį naudotam aliejui priduoti",
+    findNearest: "Rasti artimiausią konteinerį",
+    stats: (n) => `${n} aktyvūs konteineriai`,
+    requesting: "Prašoma lokacijos…",
+    found: "✓ Artimiausias konteineris rastas",
+    noGeo: "Naršyklė nepalaiko lokacijos paslaugos.",
+    locFailed: "Nepavyko gauti lokacijos. Patikrinkite naršyklės leidimus.",
+    navLabel: "Atidaryti navigaciją:",
+    nextLabel: "Kiti artimiausi:",
+    youAreHere: "Jūs esate čia",
+    distM: (m) => `${Math.round(m)} m`,
+    distKm: (km) => `${km.toFixed(1)} km`,
+    distKmLong: (km) => `${Math.round(km)} km`,
+    otherApp: "Kita programa",
+    searchPlaceholder: "Įveskite miesto pavadinimą…",
+    searchNoResults: "Konteinerių nerasta"
+  },
+  lv: {
+    title: "Lietotās eļļas savākšanas karte",
+    subtitle: "Atrodiet tuvāko konteineru lietotās eļļas nodošanai",
+    findNearest: "Atrast tuvāko konteineru",
+    stats: (n) => `${n} aktīvie konteineri`,
+    requesting: "Tiek pieprasīta atrašanās vieta…",
+    found: "✓ Tuvākais konteiners atrasts",
+    noGeo: "Pārlūks neatbalsta atrašanās vietas pakalpojumu.",
+    locFailed: "Neizdevās iegūt atrašanās vietu. Pārbaudiet pārlūka atļaujas.",
+    navLabel: "Atvērt navigāciju:",
+    nextLabel: "Citi tuvākie:",
+    youAreHere: "Jūs esat šeit",
+    distM: (m) => `${Math.round(m)} m`,
+    distKm: (km) => `${km.toFixed(1)} km`,
+    distKmLong: (km) => `${Math.round(km)} km`,
+    otherApp: "Cita programma",
+    searchPlaceholder: "Ievadiet pilsētas nosaukumu…",
+    searchNoResults: "Konteineri nav atrasti"
+  },
+  ee: {
+    title: "Kasutatud õli kogumiskaart",
+    subtitle: "Leidke lähim konteiner kasutatud õli üleandmiseks",
+    findNearest: "Leia lähim konteiner",
+    stats: (n) => `${n} aktiivset konteinerit`,
+    requesting: "Asukoha päring…",
+    found: "✓ Lähim konteiner leitud",
+    noGeo: "Brauser ei toeta asukohateenust.",
+    locFailed: "Asukohta ei õnnestunud saada. Kontrollige brauseri lubasid.",
+    navLabel: "Ava navigatsioon:",
+    nextLabel: "Teised lähimad:",
+    youAreHere: "Te olete siin",
+    distM: (m) => `${Math.round(m)} m`,
+    distKm: (km) => `${km.toFixed(1)} km`,
+    distKmLong: (km) => `${Math.round(km)} km`,
+    otherApp: "Muu rakendus",
+    searchPlaceholder: "Sisestage linna nimi…",
+    searchNoResults: "Konteinereid ei leitud"
+  },
+  en: {
+    title: "Used cooking oil collection map",
+    subtitle: "Find the nearest container for dropping off used oil",
+    findNearest: "Find nearest container",
+    stats: (n) => `${n} active containers`,
+    requesting: "Requesting location…",
+    found: "✓ Nearest container found",
+    noGeo: "Browser doesn't support location services.",
+    locFailed: "Could not get location. Check browser permissions.",
+    navLabel: "Open navigation:",
+    nextLabel: "Other nearby:",
+    youAreHere: "You are here",
+    distM: (m) => `${Math.round(m)} m`,
+    distKm: (km) => `${km.toFixed(1)} km`,
+    distKmLong: (km) => `${Math.round(km)} km`,
+    otherApp: "Other app",
+    searchPlaceholder: "Enter a city name…",
+    searchNoResults: "No containers found"
+  },
+  ru: {
+    title: "Карта сбора использованного масла",
+    subtitle: "Найдите ближайший контейнер для сдачи использованного масла",
+    findNearest: "Найти ближайший контейнер",
+    stats: (n) => `${n} активных контейнеров`,
+    requesting: "Запрос местоположения…",
+    found: "✓ Ближайший контейнер найден",
+    noGeo: "Браузер не поддерживает службы геолокации.",
+    locFailed: "Не удалось получить местоположение. Проверьте разрешения браузера.",
+    navLabel: "Открыть навигацию:",
+    nextLabel: "Другие поблизости:",
+    youAreHere: "Вы здесь",
+    distM: (m) => `${Math.round(m)} m`,
+    distKm: (km) => `${km.toFixed(1)} км`,
+    distKmLong: (km) => `${Math.round(km)} км`,
+    otherApp: "Другое приложение",
+    searchPlaceholder: "Введите название города…",
+    searchNoResults: "Контейнеры не найдены"
+  }
+};
+
+// ============================================================
+// KALBOS NUSTATYMAS
+// ============================================================
+const urlParams = new URLSearchParams(window.location.search);
+let lang = (urlParams.get('lang') || 'lt').toLowerCase();
+if (!T[lang]) lang = 'lt';
+const t = T[lang];
+
+// Filtruoti pagal kalbą:
+//   LT -> tik Lietuva
+//   LV -> tik Latvija
+//   EE -> tik Estija
+//   EN, RU -> visi
+function countryFilter(c) {
+  if (lang === 'lt') return c.country === 'Lietuva';
+  if (lang === 'lv') return c.country === 'Latvija';
+  if (lang === 'ee') return c.country === 'Estija';
+  return true;
+}
+
+// Pritaikyti UI tekstus
+document.getElementById('pageTitle').textContent = t.title;
+document.getElementById('pageSubtitle').textContent = t.subtitle;
+document.getElementById('btnFindNearest').textContent = t.findNearest;
+document.getElementById('navLabel').textContent = t.navLabel;
+document.getElementById('nextLabel').textContent = t.nextLabel;
+document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+document.title = `${t.title} | Biomotorai`;
+document.documentElement.lang = lang;
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Pažymėti aktyvią kalbą
+document.querySelectorAll('.lang-switch a').forEach(a => {
+  if (a.dataset.lang === lang) a.classList.add('active');
+});
+
+// ============================================================
+// ŽEMĖLAPIO INICIALIZAVIMAS
+// ============================================================
+const defaultViews = {
+  lt: { center: [55.3, 23.9], zoom: 7 },
+  lv: { center: [56.95, 24.1], zoom: 8 },
+  ee: { center: [59.4, 24.7], zoom: 8 },
+  en: { center: [56.5, 24.0], zoom: 6 },
+  ru: { center: [56.5, 24.0], zoom: 6 }
+};
+const view = defaultViews[lang] || defaultViews.lt;
+
+const map = L.map('map', {
+  center: view.center,
+  zoom: view.zoom,
+  scrollWheelZoom: true,
+  zoomControl: true
+});
+
+// Žemėlapio danga: OpenStreetMap standartinės plytelės (nereikia API rakto)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  subdomains: 'abc',
+  maxZoom: 19
+}).addTo(map);
+
+const yellowIcon = L.divIcon({
+  className: 'biomotorai-pin',
+  html: '<div style="background:#F4B400;width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #D89B00;box-shadow:0 2px 4px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;"><div style="transform:rotate(45deg);width:8px;height:8px;background:#2C2C2A;border-radius:50%;"></div></div>',
+  iconSize: [26, 26],
+  iconAnchor: [13, 26],
+  popupAnchor: [0, -24]
+});
+
+const cluster = L.markerClusterGroup({
+  maxClusterRadius: 50,
+  spiderfyOnMaxZoom: true,
+  showCoverageOnHover: false,
+  disableClusteringAtZoom: 15
+});
+
+let allContainers = [];
+let activeContainers = [];
+const markerById = {};
+
+// ============================================================
+// DUOMENŲ UŽKROVIMAS
+// ============================================================
+fetch('konteineriai.json?v=' + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    allContainers = data;
+    activeContainers = data.filter(c => c.active !== false && countryFilter(c));
+
+    activeContainers.forEach(c => {
+      const marker = L.marker([c.lat, c.lng], { icon: yellowIcon });
+      marker.bindPopup(buildPopup(c));
+      cluster.addLayer(marker);
+      markerById[c.id] = marker;
+    });
+
+    map.addLayer(cluster);
+
+    // Jeigu yra konteinerių, pritaikyti vaizdą prie jų visumos
+    if (activeContainers.length > 0 && activeContainers.length < 200) {
+      const bounds = L.latLngBounds(activeContainers.map(c => [c.lat, c.lng]));
+      map.fitBounds(bounds, { padding: [30, 30] });
+    }
+
+    document.getElementById('stats').textContent = t.stats(activeContainers.length);
+  })
+  .catch(err => {
+    document.getElementById('stats').textContent = 'Klaida kraunant duomenis';
+    document.getElementById('statusEl').textContent = err.message;
+    document.getElementById('statusEl').className = 'status error';
+  });
+
+// ============================================================
+// FUNKCIJOS
+// ============================================================
+function buildPopup(c) {
+  const gm = `https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lng}&travelmode=driving`;
+  const wz = `https://waze.com/ul?ll=${c.lat},${c.lng}&navigate=yes`;
+  const ap = `https://maps.apple.com/?daddr=${c.lat},${c.lng}&dirflg=d`;
+  return `<b>${escapeHTML(c.address)}</b><span class="pop-city">${escapeHTML(c.city)}</span><div class="popup-actions"><a href="${gm}" target="_blank" rel="noopener">Google Maps</a><a href="${wz}" target="_blank" rel="noopener">Waze</a><a href="${ap}" target="_blank" rel="noopener">Apple Maps</a></div>`;
+}
+
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+}
+
+function haversine(lat1, lng1, lat2, lng2) {
+  const R = 6371, toRad = x => x * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1), dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function formatDist(km) {
+  if (km < 1) return t.distM(km * 1000);
+  if (km < 10) return t.distKm(km);
+  return t.distKmLong(km);
+}
+
+let userMarker = null, routeLine = null;
+
+function showNearest(userLat, userLng) {
+  if (activeContainers.length === 0) return;
+
+  const sorted = activeContainers
+    .map(c => ({...c, dist: haversine(userLat, userLng, c.lat, c.lng)}))
+    .sort((a, b) => a.dist - b.dist);
+  const nearest = sorted[0];
+
+  if (userMarker) map.removeLayer(userMarker);
+  if (routeLine) map.removeLayer(routeLine);
+
+  userMarker = L.circleMarker([userLat, userLng], {
+    radius: 10, color: '#185FA5', fillColor: '#378ADD', fillOpacity: 1, weight: 3
+  }).addTo(map).bindPopup(t.youAreHere);
+
+  routeLine = L.polyline([[userLat, userLng], [nearest.lat, nearest.lng]], {
+    color: '#185FA5', weight: 3, dashArray: '8, 10', opacity: 0.7
+  }).addTo(map);
+
+  map.fitBounds(routeLine.getBounds(), { padding: [60, 60], maxZoom: 15 });
+
+  // Atidaryti artimiausio popup'ą
+  setTimeout(() => {
+    const marker = markerById[nearest.id];
+    if (marker) {
+      // Jei žymeklis yra grupėje, iškart parodyti
+      if (cluster.hasLayer(marker)) {
+        cluster.zoomToShowLayer(marker, () => marker.openPopup());
+      } else {
+        marker.openPopup();
+      }
+    }
+  }, 600);
+
+  document.getElementById('statusEl').textContent = t.found;
+  document.getElementById('statusEl').className = 'status success';
+  document.getElementById('resultCard').classList.remove('hidden');
+  document.getElementById('resName').textContent = nearest.address;
+  document.getElementById('resCity').textContent = nearest.city;
+  document.getElementById('resDist').textContent = formatDist(nearest.dist);
+
+  const lat = nearest.lat, lng = nearest.lng, name = encodeURIComponent(nearest.address);
+  document.getElementById('navGoogle').href = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
+  document.getElementById('navWaze').href = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
+  document.getElementById('navApple').href = `https://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`;
+  document.getElementById('navGeo').href = `geo:${lat},${lng}?q=${lat},${lng}(${name})`;
+  document.querySelector('#navGeo').lastChild.textContent = ' ' + t.otherApp;
+
+  const nextHTML = sorted.slice(1, 4).map(c =>
+    `<div class="next-item" onclick="focusContainer(${c.id})"><span class="next-item-name">${escapeHTML(c.address)}, ${escapeHTML(c.city)}</span><span class="next-item-dist">${formatDist(c.dist)}</span></div>`
+  ).join('');
+  document.getElementById('nextItems').innerHTML = nextHTML;
+
+  document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function focusContainer(id) {
+  const c = activeContainers.find(x => x.id === id);
+  if (!c) return;
+  map.flyTo([c.lat, c.lng], 16);
+  setTimeout(() => {
+    const marker = markerById[id];
+    if (marker) {
+      if (cluster.hasLayer(marker)) {
+        cluster.zoomToShowLayer(marker, () => marker.openPopup());
+      } else {
+        marker.openPopup();
+      }
+    }
+  }, 400);
+}
+
+function findNearest() {
+  const statusEl = document.getElementById('statusEl');
+  if (!navigator.geolocation) {
+    statusEl.textContent = t.noGeo;
+    statusEl.className = 'status error';
+    return;
+  }
+  statusEl.textContent = t.requesting;
+  statusEl.className = 'status';
+  navigator.geolocation.getCurrentPosition(
+    pos => showNearest(pos.coords.latitude, pos.coords.longitude),
+    err => {
+      statusEl.textContent = t.locFailed;
+      statusEl.className = 'status error';
+    },
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+  );
+}
+
+// ============================================================
+// PAIEŠKA PAGAL MIESTĄ
+// ============================================================
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+const searchClear = document.getElementById('searchClear');
+let searchMatches = [];
+let searchActiveIdx = -1;
+
+function normalize(s) {
+  return String(s || '').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // ignoruoti diakritinius ženklus
+}
+
+function highlight(text, frag) {
+  const nText = normalize(text), nFrag = normalize(frag);
+  const i = nText.indexOf(nFrag);
+  if (i === -1 || !frag) return escapeHTML(text);
+  return escapeHTML(text.slice(0, i)) + '<b>' +
+         escapeHTML(text.slice(i, i + frag.length)) + '</b>' +
+         escapeHTML(text.slice(i + frag.length));
+}
+
+function runSearch() {
+  const q = searchInput.value.trim();
+  searchClear.classList.toggle('show', q.length > 0);
+  searchActiveIdx = -1;
+
+  if (q.length < 1) {
+    searchResults.classList.remove('show');
+    searchResults.innerHTML = '';
+    searchMatches = [];
+    return;
+  }
+
+  const nq = normalize(q);
+  searchMatches = activeContainers
+    .filter(c => normalize(c.city).includes(nq) || normalize(c.address).includes(nq))
+    .sort((a, b) => (a.city || '').localeCompare(b.city || '', 'lt') ||
+                    (a.address || '').localeCompare(b.address || '', 'lt'));
+
+  if (searchMatches.length === 0) {
+    searchResults.innerHTML = `<div class="search-empty">${t.searchNoResults}</div>`;
+    searchResults.classList.add('show');
+    return;
+  }
+
+  const shown = searchMatches.slice(0, 12);
+  searchResults.innerHTML = shown.map((c, idx) =>
+    `<div class="search-result-item" data-idx="${idx}">
+       <div class="search-result-name">${highlight(c.address, q)}</div>
+       <div class="search-result-city">${highlight(c.city, q)}</div>
+     </div>`
+  ).join('');
+  searchResults.classList.add('show');
+
+  searchResults.querySelectorAll('.search-result-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const c = shown[Number(el.dataset.idx)];
+      selectSearchResult(c);
+    });
+  });
+}
+
+function selectSearchResult(c) {
+  if (!c) return;
+  searchResults.classList.remove('show');
+  searchInput.blur();
+  focusContainer(c.id);
+}
+
+function fitToMatches() {
+  if (searchMatches.length === 0) return;
+  if (searchMatches.length === 1) { selectSearchResult(searchMatches[0]); return; }
+  const bounds = L.latLngBounds(searchMatches.map(c => [c.lat, c.lng]));
+  map.fitBounds(bounds, { padding: [50, 50], maxZoom: 14 });
+  searchResults.classList.remove('show');
+  searchInput.blur();
+}
+
+searchInput.addEventListener('input', runSearch);
+searchInput.addEventListener('focus', () => { if (searchInput.value.trim()) runSearch(); });
+
+searchInput.addEventListener('keydown', (e) => {
+  const items = searchResults.querySelectorAll('.search-result-item');
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    searchActiveIdx = Math.min(searchActiveIdx + 1, items.length - 1);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    searchActiveIdx = Math.max(searchActiveIdx - 1, 0);
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (searchActiveIdx >= 0 && items[searchActiveIdx]) {
+      items[searchActiveIdx].click();
+    } else {
+      fitToMatches();
+    }
+    return;
+  } else if (e.key === 'Escape') {
+    searchResults.classList.remove('show');
+    searchInput.blur();
+    return;
+  } else {
+    return;
+  }
+  items.forEach((el, i) => el.classList.toggle('active', i === searchActiveIdx));
+  if (items[searchActiveIdx]) items[searchActiveIdx].scrollIntoView({ block: 'nearest' });
+});
+
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  runSearch();
+  searchInput.focus();
+});
+
+// Uždaryti rezultatų sąrašą paspaudus šalia
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.search-box')) searchResults.classList.remove('show');
+});
+
+window.focusContainer = focusContainer;
+window.findNearest = findNearest;
+</script>
+</body>
+</html>
