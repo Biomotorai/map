@@ -5,16 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="description" content="Naudoto aliejaus surinkimo konteinerių žemėlapis. Raskite artimiausią surinkimo vietą.">
 <title>Naudoto aliejaus surinkimo žemėlapis | Biomotorai</title>
-<!-- ===== Google Analytics ===== -->
-<!-- Measurement ID: G-XREM02W3KB (Biomotorai konteinerių žemėlapis) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XREM02W3KB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XREM02W3KB');
-</script>
-<!-- ===== Google Analytics pabaiga ===== -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css">
@@ -341,7 +331,7 @@ html, body {
   </div>
 
   <div class="footer">
-    <p>© <span id="year"></span> UAB „Biomotorai" · Žemėlapis: OpenStreetMap, Carto</p>
+    <p>© <span id="year"></span> UAB „Biomotorai" · Žemėlapis: OpenStreetMap</p>
   </div>
 </div>
 
@@ -493,9 +483,10 @@ const map = L.map('map', {
   zoomControl: true
 });
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
-  subdomains: 'abcd',
+// Žemėlapio danga: OpenStreetMap standartinės plytelės (nereikia API rakto)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  subdomains: 'abc',
   maxZoom: 19
 }).addTo(map);
 
@@ -557,7 +548,7 @@ function buildPopup(c) {
   const gm = `https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lng}&travelmode=driving`;
   const wz = `https://waze.com/ul?ll=${c.lat},${c.lng}&navigate=yes`;
   const ap = `https://maps.apple.com/?daddr=${c.lat},${c.lng}&dirflg=d`;
-  return `<b>${escapeHTML(c.address)}</b><span class="pop-city">${escapeHTML(c.city)}</span><div class="popup-actions"><a href="${gm}" target="_blank" rel="noopener" onclick="trackNavById(${c.id},'google')">Google Maps</a><a href="${wz}" target="_blank" rel="noopener" onclick="trackNavById(${c.id},'waze')">Waze</a><a href="${ap}" target="_blank" rel="noopener" onclick="trackNavById(${c.id},'apple')">Apple Maps</a></div>`;
+  return `<b>${escapeHTML(c.address)}</b><span class="pop-city">${escapeHTML(c.city)}</span><div class="popup-actions"><a href="${gm}" target="_blank" rel="noopener">Google Maps</a><a href="${wz}" target="_blank" rel="noopener">Waze</a><a href="${ap}" target="_blank" rel="noopener">Apple Maps</a></div>`;
 }
 
 function escapeHTML(s) {
@@ -627,12 +618,6 @@ function showNearest(userLat, userLng) {
   document.getElementById('navGeo').href = `geo:${lat},${lng}?q=${lat},${lng}(${name})`;
   document.querySelector('#navGeo').lastChild.textContent = ' ' + t.otherApp;
 
-  // GA sekimas rezultatų kortelės mygtukams
-  document.getElementById('navGoogle').onclick = () => trackNavById(nearest.id, 'google');
-  document.getElementById('navWaze').onclick   = () => trackNavById(nearest.id, 'waze');
-  document.getElementById('navApple').onclick  = () => trackNavById(nearest.id, 'apple');
-  document.getElementById('navGeo').onclick    = () => trackNavById(nearest.id, 'geo');
-
   const nextHTML = sorted.slice(1, 4).map(c =>
     `<div class="next-item" onclick="focusContainer(${c.id})"><span class="next-item-name">${escapeHTML(c.address)}, ${escapeHTML(c.city)}</span><span class="next-item-dist">${formatDist(c.dist)}</span></div>`
   ).join('');
@@ -678,22 +663,6 @@ function findNearest() {
 
 window.focusContainer = focusContainer;
 window.findNearest = findNearest;
-
-// ============================================================
-// GOOGLE ANALYTICS – navigacijos paspaudimų sekimas
-// ============================================================
-function trackNavById(id, app) {
-  const c = activeContainers.find(x => x.id === id) || allContainers.find(x => x.id === id);
-  if (c && typeof gtag === 'function') {
-    gtag('event', 'navigate_to_container', {
-      container_id: c.id,
-      container_address: c.address,
-      container_city: c.city,
-      nav_app: app
-    });
-  }
-}
-window.trackNavById = trackNavById;
 </script>
 </body>
 </html>
