@@ -1395,6 +1395,15 @@
     "active": true
   },
   {
+    "id": 2297,
+    "lat": 55.720856,
+    "lng": 24.360069,
+    "address": "Nemuno g. 4, Panevėžys",
+    "city": "Panevėžys",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 2314,
     "lat": 55.735025,
     "lng": 24.311545,
@@ -1435,15 +1444,6 @@
     "lat": 55.742746,
     "lng": 24.351528,
     "address": "Radviliškio g. 10, Panevėžys",
-    "city": "Panevėžys",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
-    "id": 2297,
-    "lat": 55.719281,
-    "lng": 24.364013,
-    "address": "Ramygalos g. 82, Panevėžys",
     "city": "Panevėžys",
     "country": "Lietuva",
     "active": true
