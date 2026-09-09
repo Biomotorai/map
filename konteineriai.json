@@ -720,6 +720,15 @@
     "active": true
   },
   {
+    "id": 2769,
+    "lat": 55.696923,
+    "lng": 21.15605,
+    "address": "Kauno g. 17, Klaipėda",
+    "city": "Klaipėda",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 2277,
     "lat": 55.70022,
     "lng": 21.164114,
@@ -751,6 +760,15 @@
     "lat": 55.704059,
     "lng": 21.170161,
     "address": "Klaipėdos RATC Tilžės",
+    "city": "Klaipėda",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2767,
+    "lat": 55.716567,
+    "lng": 21.17456,
+    "address": "Klemiškės g. 18, Klaipėda",
     "city": "Klaipėda",
     "country": "Lietuva",
     "active": true
@@ -796,6 +814,15 @@
     "lat": 55.731231,
     "lng": 21.127306,
     "address": "Liepojos g. 4, Klaipėda",
+    "city": "Klaipėda",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2765,
+    "lat": 55.713552,
+    "lng": 21.132613,
+    "address": "Ligoninės g. 2, Klaipėda",
     "city": "Klaipėda",
     "country": "Lietuva",
     "active": true
@@ -864,6 +891,15 @@
     "active": true
   },
   {
+    "id": 2768,
+    "lat": 55.674938,
+    "lng": 21.163636,
+    "address": "Poilsio g. 37, Klaipėda",
+    "city": "Klaipėda",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 2263,
     "lat": 55.67685,
     "lng": 21.185782,
@@ -904,6 +940,15 @@
     "lat": 55.663677,
     "lng": 21.196677,
     "address": "Vaidaugų g. 5, Klaipėda",
+    "city": "Klaipėda",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2766,
+    "lat": 55.665054,
+    "lng": 21.180698,
+    "address": "Varpų g. 17, Klaipėda",
     "city": "Klaipėda",
     "country": "Lietuva",
     "active": true
