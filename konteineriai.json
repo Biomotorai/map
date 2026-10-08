@@ -3033,6 +3033,15 @@
     "active": true
   },
   {
+    "id": 2772,
+    "lat": 54.6962,
+    "lng": 25.27925,
+    "address": "Konstitucijos pr. 3",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 2753,
     "lat": 54.67134,
     "lng": 25.09022,
@@ -3546,6 +3555,15 @@
     "active": true
   },
   {
+    "id": 2770,
+    "lat": 54.75748,
+    "lng": 25.27724,
+    "address": "Santaros g. 5B",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 2611,
     "lat": 54.725574,
     "lng": 25.342652,
@@ -3613,6 +3631,15 @@
     "lat": 54.71302,
     "lng": 25.25152,
     "address": "Šeškinės g. 15, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2771,
+    "lat": 54.7162,
+    "lng": 25.25055,
+    "address": "Šeškinės g. 24",
     "city": "Vilnius",
     "country": "Lietuva",
     "active": true
@@ -3838,6 +3865,15 @@
     "lat": 54.74951,
     "lng": 25.23412,
     "address": "Vandenio g. 30, Vilnius",
+    "city": "Vilnius",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2773,
+    "lat": 54.59573,
+    "lng": 25.17572,
+    "address": "Vėjo g. 12",
     "city": "Vilnius",
     "country": "Lietuva",
     "active": true
