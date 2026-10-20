@@ -1350,15 +1350,6 @@
     "active": true
   },
   {
-    "id": 2305,
-    "lat": 55.731391,
-    "lng": 24.332317,
-    "address": "A. Smetonos g. 25, Panevėžys",
-    "city": "Panevėžys",
-    "country": "Lietuva",
-    "active": true
-  },
-  {
     "id": 2292,
     "lat": 55.747893,
     "lng": 24.356539,
@@ -1377,6 +1368,15 @@
     "active": true
   },
   {
+    "id": 2776,
+    "lat": 55.72222,
+    "lng": 24.387138,
+    "address": "Beržų g. 47, Panevėžys",
+    "city": "Panevėžys",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 2298,
     "lat": 55.719206,
     "lng": 24.351776,
@@ -1386,10 +1386,37 @@
     "active": true
   },
   {
+    "id": 2775,
+    "lat": 55.732185,
+    "lng": 24.32522,
+    "address": "Dariaus ir Girėno g. 13, Panevėžys",
+    "city": "Panevėžys",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2305,
+    "lat": 55.727717,
+    "lng": 24.368283,
+    "address": "J. Basanavičiaus g. 3, Panevėžys",
+    "city": "Panevėžys",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
     "id": 2293,
     "lat": 55.74023,
     "lng": 24.366436,
     "address": "Liepų al. 22, Panevėžys",
+    "city": "Panevėžys",
+    "country": "Lietuva",
+    "active": true
+  },
+  {
+    "id": 2774,
+    "lat": 55.721539,
+    "lng": 24.318409,
+    "address": "Molainių g. 100, Panevėžys",
     "city": "Panevėžys",
     "country": "Lietuva",
     "active": true
@@ -1467,19 +1494,19 @@
     "active": true
   },
   {
-    "id": 2306,
-    "lat": 55.733861,
-    "lng": 24.346396,
-    "address": "Tulpių g. 5, Panevėžys",
+    "id": 2299,
+    "lat": 55.722119,
+    "lng": 24.349396,
+    "address": "Tilvyčio g. 42/J.Žemgulio g.",
     "city": "Panevėžys",
     "country": "Lietuva",
     "active": true
   },
   {
-    "id": 2299,
-    "lat": 55.72337,
-    "lng": 24.354721,
-    "address": "Vysk. K. Paltaroko g. 15, Panevėžys",
+    "id": 2306,
+    "lat": 55.733861,
+    "lng": 24.346396,
+    "address": "Tulpių g. 5, Panevėžys",
     "city": "Panevėžys",
     "country": "Lietuva",
     "active": true
